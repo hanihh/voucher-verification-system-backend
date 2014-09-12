@@ -1,0 +1,673 @@
+2014/09/11 14:09:44 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1045] Access denied for user 'vvs_user'@'localhost' (using password: YES)' in C:\xampp\htdocs\yii\framework\db\CDbConnection.php:382
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 C:\xampp\htdocs\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 C:\xampp\htdocs\yii\framework\base\CModule.php(103): CModule->getComponent('db')
+#4 C:\xampp\htdocs\yii\framework\gii\generators\model\ModelCode.php(60): CModule->__get('db')
+#5 C:\xampp\htdocs\yii\framework\web\CFormModel.php(39): ModelCode->init()
+#6 C:\xampp\htdocs\yii\framework\gii\CCodeGenerator.php(153): CFormModel->__construct()
+#7 C:\xampp\htdocs\yii\framework\gii\CCodeGenerator.php(63): CCodeGenerator->prepare()
+#8 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): CCodeGenerator->actionIndex()
+#9 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('index')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('gii/model/index')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/vvs_v2/index.php/gii/model/index
+HTTP_REFERER=http://localhost/vvs_v2/index.php/gii
+---
+2014/09/12 09:28:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country/
+---
+2014/09/12 09:29:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country/
+---
+2014/09/12 09:29:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country/
+---
+2014/09/12 09:30:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country/
+---
+2014/09/12 09:30:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country/
+---
+2014/09/12 09:30:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country
+---
+2014/09/12 09:31:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country/1
+---
+2014/09/12 09:31:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/
+---
+2014/09/12 09:32:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/
+---
+2014/09/12 09:32:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country
+---
+2014/09/12 09:32:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country
+---
+2014/09/12 09:35:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country
+---
+2014/09/12 09:35:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country
+---
+2014/09/12 09:35:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country
+---
+2014/09/12 09:36:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country
+---
+2014/09/12 09:36:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country
+---
+2014/09/12 09:38:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country
+---
+2014/09/12 09:38:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country
+---
+2014/09/12 09:41:36 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('country/admin')
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/vvs_v2/index.php/country/admin
+---
+2014/09/12 09:42:45 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('country/admin')
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/vvs_v2/index.php/country/admin
+---
+2014/09/12 09:42:49 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('country')
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/vvs_v2/index.php/country/
+---
+2014/09/12 09:42:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country/
+---
+2014/09/12 09:47:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/viewcountry".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/viewcountry')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/viewcountry/
+---
+2014/09/12 09:47:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/view/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/view/countr...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/view/country/
+---
+2014/09/12 09:47:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/view/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/view/countr...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/view/country
+---
+2014/09/12 09:49:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/view/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/view/countr...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/view/country
+---
+2014/09/12 09:49:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country
+---
+2014/09/12 09:51:25 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('country')
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/vvs_v2/index.php/country
+---
+2014/09/12 09:51:31 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('country/admin')
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/vvs_v2/index.php/country/admin
+---
+2014/09/12 09:51:38 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('country/view')
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/vvs_v2/index.php/country/view
+---
+2014/09/12 09:51:58 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#5 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('country/view')
+#6 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/vvs_v2/index.php/country/view
+---
+2014/09/12 09:51:59 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#5 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('country/view')
+#6 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/vvs_v2/index.php/country/view
+---
+2014/09/12 09:52:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country/
+---
+2014/09/12 09:52:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country
+---
+2014/09/12 09:52:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country/1".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country/1')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country/1
+---
+2014/09/12 09:53:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country/2".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country/2')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country/2
+---
+2014/09/12 09:53:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "api/country/2".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/country/2')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/country/2
+---
+2014/09/12 09:58:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'RESOURCE '1' NOT FOUND' in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\components\ERestResourceHelper.php:87
+Stack trace:
+#0 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(64): ERestResourceHelper->prepareRestModel('1')
+#1 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\EActionRestGET.php(52): ERestBaseAction->getModel('1')
+#2 [internal function]: EActionRestGET->run('1', NULL, NULL)
+#3 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(EActionRestGET), Array)
+#4 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(74): CAction->runWithParamsInternal(Object(EActionRestGET), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CAction->runWithParams(Array)
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(EActionRestGET))
+#7 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\filters\ERestFilter.php(88): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): ERestFilter->preFilter(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(EActionRestGET), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('REST.GET')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('beneficiary/RES...')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/vvs_v2/index.php/api/beneficiary/1
+---
+2014/09/12 09:58:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'RESOURCE '100' NOT FOUND' in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\components\ERestResourceHelper.php:87
+Stack trace:
+#0 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(64): ERestResourceHelper->prepareRestModel('100')
+#1 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\EActionRestGET.php(52): ERestBaseAction->getModel('100')
+#2 [internal function]: EActionRestGET->run('100', NULL, NULL)
+#3 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(EActionRestGET), Array)
+#4 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(74): CAction->runWithParamsInternal(Object(EActionRestGET), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CAction->runWithParams(Array)
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(EActionRestGET))
+#7 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\filters\ERestFilter.php(88): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): ERestFilter->preFilter(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(EActionRestGET), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('REST.GET')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('beneficiary/RES...')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/vvs_v2/index.php/api/beneficiary/100
+---
+2014/09/12 09:58:16 [error] [php] include(Nationality.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 unknown(0): spl_autoload_call()
+#1 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\ERestEventListenerRegistry.php(685): call_user_func()
+#2 unknown(0): BeneficiaryController->{closure}()
+#3 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\Eventor\Eventor.php(170): call_user_func_array()
+#4 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\behaviors\ERestBehavior.php(109): Eventor->emit()
+#5 unknown(0): ERestBehavior->emitRest()
+#6 C:\xampp\htdocs\yii\framework\base\CComponent.php(261): call_user_func_array()
+#7 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(104): BeneficiaryController->__call()
+#8 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(104): BeneficiaryController->emitRest()
+#9 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\EActionRestGET.php(34): EActionRestGET->getRelations()
+#10 unknown(0): EActionRestGET->run()
+#11 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(74): EActionRestGET->runWithParamsInternal()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(308): EActionRestGET->runWithParams()
+#14 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): BeneficiaryController->runAction()
+#15 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\filters\ERestFilter.php(88): CFilterChain->run()
+#16 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): ERestFilter->preFilter()
+#17 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): ERestFilter->filter()
+#18 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\yii\framework\web\CController.php(265): BeneficiaryController->runActionWithFilters()
+#20 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): BeneficiaryController->run()
+#21 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#22 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\vvs_v2\index.php(13): CWebApplication->run()
+REQUEST_URI=/vvs_v2/index.php/api/beneficiary/
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\ERestEventListenerRegistry.php (685)
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\Eventor\Eventor.php (170)
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\behaviors\ERestBehavior.php (109)
+2014/09/12 09:58:43 [error] [php] include(Nationality.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 unknown(0): spl_autoload_call()
+#1 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\ERestEventListenerRegistry.php(685): call_user_func()
+#2 unknown(0): BeneficiaryController->{closure}()
+#3 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\Eventor\Eventor.php(170): call_user_func_array()
+#4 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\behaviors\ERestBehavior.php(109): Eventor->emit()
+#5 unknown(0): ERestBehavior->emitRest()
+#6 C:\xampp\htdocs\yii\framework\base\CComponent.php(261): call_user_func_array()
+#7 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(104): BeneficiaryController->__call()
+#8 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(104): BeneficiaryController->emitRest()
+#9 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\EActionRestGET.php(34): EActionRestGET->getRelations()
+#10 unknown(0): EActionRestGET->run()
+#11 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(74): EActionRestGET->runWithParamsInternal()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(308): EActionRestGET->runWithParams()
+#14 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): BeneficiaryController->runAction()
+#15 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\filters\ERestFilter.php(88): CFilterChain->run()
+#16 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): ERestFilter->preFilter()
+#17 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): ERestFilter->filter()
+#18 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\yii\framework\web\CController.php(265): BeneficiaryController->runActionWithFilters()
+#20 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): BeneficiaryController->run()
+#21 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#22 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\vvs_v2\index.php(13): CWebApplication->run()
+REQUEST_URI=/vvs_v2/index.php/api/Beneficiary/
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\ERestEventListenerRegistry.php (685)
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\Eventor\Eventor.php (170)
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\behaviors\ERestBehavior.php (109)
+2014/09/12 09:58:44 [error] [php] include(Nationality.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 unknown(0): spl_autoload_call()
+#1 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\ERestEventListenerRegistry.php(685): call_user_func()
+#2 unknown(0): BeneficiaryController->{closure}()
+#3 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\Eventor\Eventor.php(170): call_user_func_array()
+#4 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\behaviors\ERestBehavior.php(109): Eventor->emit()
+#5 unknown(0): ERestBehavior->emitRest()
+#6 C:\xampp\htdocs\yii\framework\base\CComponent.php(261): call_user_func_array()
+#7 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(104): BeneficiaryController->__call()
+#8 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(104): BeneficiaryController->emitRest()
+#9 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\EActionRestGET.php(34): EActionRestGET->getRelations()
+#10 unknown(0): EActionRestGET->run()
+#11 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(74): EActionRestGET->runWithParamsInternal()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(308): EActionRestGET->runWithParams()
+#14 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): BeneficiaryController->runAction()
+#15 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\filters\ERestFilter.php(88): CFilterChain->run()
+#16 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): ERestFilter->preFilter()
+#17 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): ERestFilter->filter()
+#18 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\yii\framework\web\CController.php(265): BeneficiaryController->runActionWithFilters()
+#20 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): BeneficiaryController->run()
+#21 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#22 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\vvs_v2\index.php(13): CWebApplication->run()
+REQUEST_URI=/vvs_v2/index.php/api/Beneficiary/
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\ERestEventListenerRegistry.php (685)
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\Eventor\Eventor.php (170)
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\behaviors\ERestBehavior.php (109)
+2014/09/12 09:58:45 [error] [php] include(Nationality.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 unknown(0): spl_autoload_call()
+#1 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\ERestEventListenerRegistry.php(685): call_user_func()
+#2 unknown(0): BeneficiaryController->{closure}()
+#3 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\Eventor\Eventor.php(170): call_user_func_array()
+#4 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\behaviors\ERestBehavior.php(109): Eventor->emit()
+#5 unknown(0): ERestBehavior->emitRest()
+#6 C:\xampp\htdocs\yii\framework\base\CComponent.php(261): call_user_func_array()
+#7 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(104): BeneficiaryController->__call()
+#8 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(104): BeneficiaryController->emitRest()
+#9 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\EActionRestGET.php(34): EActionRestGET->getRelations()
+#10 unknown(0): EActionRestGET->run()
+#11 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(74): EActionRestGET->runWithParamsInternal()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(308): EActionRestGET->runWithParams()
+#14 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): BeneficiaryController->runAction()
+#15 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\filters\ERestFilter.php(88): CFilterChain->run()
+#16 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): ERestFilter->preFilter()
+#17 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): ERestFilter->filter()
+#18 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\yii\framework\web\CController.php(265): BeneficiaryController->runActionWithFilters()
+#20 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): BeneficiaryController->run()
+#21 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#22 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\vvs_v2\index.php(13): CWebApplication->run()
+REQUEST_URI=/vvs_v2/index.php/api/Beneficiary/
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\ERestEventListenerRegistry.php (685)
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\Eventor\Eventor.php (170)
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\behaviors\ERestBehavior.php (109)
+2014/09/12 10:00:07 [error] [php] include(BeneficiaryAttribute.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 unknown(0): spl_autoload_call()
+#1 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\ERestEventListenerRegistry.php(685): call_user_func()
+#2 unknown(0): BeneficiaryController->{closure}()
+#3 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\Eventor\Eventor.php(170): call_user_func_array()
+#4 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\behaviors\ERestBehavior.php(109): Eventor->emit()
+#5 unknown(0): ERestBehavior->emitRest()
+#6 C:\xampp\htdocs\yii\framework\base\CComponent.php(261): call_user_func_array()
+#7 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(104): BeneficiaryController->__call()
+#8 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(104): BeneficiaryController->emitRest()
+#9 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\EActionRestGET.php(34): EActionRestGET->getRelations()
+#10 unknown(0): EActionRestGET->run()
+#11 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(74): EActionRestGET->runWithParamsInternal()
+#13 C:\xampp\htdocs\yii\framework\web\CController.php(308): EActionRestGET->runWithParams()
+#14 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): BeneficiaryController->runAction()
+#15 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\filters\ERestFilter.php(88): CFilterChain->run()
+#16 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): ERestFilter->preFilter()
+#17 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): ERestFilter->filter()
+#18 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\yii\framework\web\CController.php(265): BeneficiaryController->runActionWithFilters()
+#20 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): BeneficiaryController->run()
+#21 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#22 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\vvs_v2\index.php(13): CWebApplication->run()
+REQUEST_URI=/vvs_v2/index.php/api/Beneficiary/
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\ERestEventListenerRegistry.php (685)
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\events\Eventor\Eventor.php (170)
+in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\behaviors\ERestBehavior.php (109)
+2014/09/12 10:01:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'RESOURCE '10' NOT FOUND' in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\components\ERestResourceHelper.php:87
+Stack trace:
+#0 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(64): ERestResourceHelper->prepareRestModel('10')
+#1 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\EActionRestGET.php(52): ERestBaseAction->getModel('10')
+#2 [internal function]: EActionRestGET->run('10', NULL, NULL)
+#3 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(EActionRestGET), Array)
+#4 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(74): CAction->runWithParamsInternal(Object(EActionRestGET), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CAction->runWithParams(Array)
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(EActionRestGET))
+#7 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\filters\ERestFilter.php(88): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): ERestFilter->preFilter(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(EActionRestGET), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('REST.GET')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Beneficiary/RES...')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/vvs_v2/index.php/api/Beneficiary/10
+---
+2014/09/12 10:01:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'RESOURCE '10' NOT FOUND' in C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\components\ERestResourceHelper.php:87
+Stack trace:
+#0 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\ERestBaseAction.php(64): ERestResourceHelper->prepareRestModel('10')
+#1 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\actions\EActionRestGET.php(52): ERestBaseAction->getModel('10')
+#2 [internal function]: EActionRestGET->run('10', NULL, NULL)
+#3 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(EActionRestGET), Array)
+#4 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(74): CAction->runWithParamsInternal(Object(EActionRestGET), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CAction->runWithParams(Array)
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(EActionRestGET))
+#7 C:\xampp\htdocs\vvs_v2\protected\extensions\starship\RestfullYii\filters\ERestFilter.php(88): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(38): ERestFilter->preFilter(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(EActionRestGET), Array)
+#12 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('REST.GET')
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Beneficiary/RES...')
+#14 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/vvs_v2/index.php/api/Beneficiary/10
+---
+2014/09/12 10:08:08 [error] [php] include(BaseController.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 C:\xampp\htdocs\vvs_v2\protected\controllers\SubdistributionController.php(3): spl_autoload_call()
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(354): require()
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(276): CWebApplication->createController()
+#3 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\vvs_v2\index.php(13): CWebApplication->run()
+REQUEST_URI=/vvs_v2/index.php/api/subdistribution/
+in C:\xampp\htdocs\vvs_v2\protected\controllers\SubdistributionController.php (3)
+in C:\xampp\htdocs\vvs_v2\index.php (13)
+2014/09/12 10:08:38 [error] [php] include(BaseController.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 C:\xampp\htdocs\vvs_v2\protected\controllers\SubdistributionController.php(3): spl_autoload_call()
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(354): require()
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(276): CWebApplication->createController()
+#3 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\vvs_v2\index.php(13): CWebApplication->run()
+REQUEST_URI=/vvs_v2/index.php/api/subdistribution/
+in C:\xampp\htdocs\vvs_v2\protected\controllers\SubdistributionController.php (3)
+in C:\xampp\htdocs\vvs_v2\index.php (13)
+2014/09/12 10:08:39 [error] [php] include(BaseController.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 C:\xampp\htdocs\vvs_v2\protected\controllers\SubdistributionController.php(3): spl_autoload_call()
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(354): require()
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(276): CWebApplication->createController()
+#3 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\vvs_v2\index.php(13): CWebApplication->run()
+REQUEST_URI=/vvs_v2/index.php/api/subdistribution/
+in C:\xampp\htdocs\vvs_v2\protected\controllers\SubdistributionController.php (3)
+in C:\xampp\htdocs\vvs_v2\index.php (13)
+2014/09/12 10:09:10 [error] [php] include(BaseController.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 C:\xampp\htdocs\vvs_v2\protected\controllers\SubdistributionController.php(3): spl_autoload_call()
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(354): require()
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(276): CWebApplication->createController()
+#3 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\vvs_v2\index.php(13): CWebApplication->run()
+REQUEST_URI=/vvs_v2/index.php/api/subdistribution/
+in C:\xampp\htdocs\vvs_v2\protected\controllers\SubdistributionController.php (3)
+in C:\xampp\htdocs\vvs_v2\index.php (13)
+2014/09/12 10:09:11 [error] [php] include(BaseController.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 C:\xampp\htdocs\vvs_v2\protected\controllers\SubdistributionController.php(3): spl_autoload_call()
+#1 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(354): require()
+#2 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(276): CWebApplication->createController()
+#3 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\vvs_v2\index.php(13): CWebApplication->run()
+REQUEST_URI=/vvs_v2/index.php/api/subdistribution/
+in C:\xampp\htdocs\vvs_v2\protected\controllers\SubdistributionController.php (3)
+in C:\xampp\htdocs\vvs_v2\index.php (13)
+2014/09/12 10:17:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "attreibute/REST.GET".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('attreibute/REST...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\vvs_v2\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/vvs_v2/index.php/api/attreibute/
+---
