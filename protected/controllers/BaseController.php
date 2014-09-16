@@ -42,4 +42,16 @@ class BaseController extends GxController{
             ),
         );
     }
+    
+    protected function sendAjaxResponse(AjaxResponseInterface $model) {
+            $success = count($model->getErrors()) === 0;
+            $result_code = $success ? 200 : 404;
+            header('Content-type: application/json', true, $result_code);
+            echo json_encode([
+                'success' => $success,
+                'data' => $model->getResponseData(),
+                'errors' => $model->getErrors(),
+            ]);
+            Yii::app()->end();
+        }
 }
