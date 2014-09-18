@@ -2,7 +2,8 @@
 Yii::import('application.controllers.BaseController');
 class CommunityController extends BaseController {
 
-
+        
+        
 	public function actionView($id) {
 		$this->render('view', array(
 			'model' => $this->loadModel($id, 'Community'),
@@ -72,5 +73,29 @@ class CommunityController extends BaseController {
 			'model' => $model,
 		));
 	}
-
+        
+        public function actionDynamiccommunities()
+        {
+            /*if (isset($_GET['subdistrict_id']) && !empty($_GET['subdistrict_id'])) {
+                $data= Community::model()->findAll('subdistrict_id=:subdistrict_id', 
+                          array(':subdistrict_id'=>(int) $_GET['subdistrict_id']));
+            } else {
+                $data= Community::model()->findAll();
+            }
+            header('Content-type: application/json', true, 200);
+            echo CJSON::encode($data, 'id', 'code', 'en_name', 'ar_name');
+            Yii::app()->end();
+             * 
+             */
+            //print_r($data);
+            //$this->sendAjaxResponse($data);
+            //$data=CHtml::listData($data,'id','en_name');
+            //echo CHtml::tag('option',
+            //               array('value'=>0),"-- Select One --",true);
+            //foreach($data as $value=>$name)
+            //{
+            //    echo CHtml::tag('option',
+            //               array('value'=>$value),CHtml::encode($name),true);
+            //}
+        }
 }

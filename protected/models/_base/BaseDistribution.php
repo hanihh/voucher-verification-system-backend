@@ -14,6 +14,8 @@
  * @property integer $program_id
  * @property integer $donor_id
  * @property integer $online
+ * @property string $title_ar
+ * @property string $title_en
  *
  * @property Donor $donor
  * @property Program $program
@@ -42,8 +44,9 @@ abstract class BaseDistribution extends GxActiveRecord {
 			array('name', 'required'),
 			array('program_id, donor_id, online', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
-			array('program_id, donor_id, online', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('id, name, program_id, donor_id, online', 'safe', 'on'=>'search'),
+			array('title_ar, title_en', 'length', 'max'=>40),
+			array('program_id, donor_id, online, title_ar, title_en', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('id, name, program_id, donor_id, online, title_ar, title_en', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +70,8 @@ abstract class BaseDistribution extends GxActiveRecord {
 			'program_id' => null,
 			'donor_id' => null,
 			'online' => Yii::t('app', 'Online'),
+			'title_ar' => Yii::t('app', 'Title Ar'),
+			'title_en' => Yii::t('app', 'Title En'),
 			'donor' => null,
 			'program' => null,
 			'subdistributions' => null,
@@ -81,6 +86,8 @@ abstract class BaseDistribution extends GxActiveRecord {
 		$criteria->compare('program_id', $this->program_id);
 		$criteria->compare('donor_id', $this->donor_id);
 		$criteria->compare('online', $this->online);
+		$criteria->compare('title_ar', $this->title_ar, true);
+		$criteria->compare('title_en', $this->title_en, true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,

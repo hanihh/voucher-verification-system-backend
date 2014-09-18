@@ -30,6 +30,16 @@
 		<?php echo $form->textField($model, 'online'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model, 'title_ar'); ?>
+		<?php echo $form->textField($model, 'title_ar', array('maxlength' => 40)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model, 'title_en'); ?>
+		<?php echo $form->textField($model, 'title_en', array('maxlength' => 40)); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo GxHtml::submitButton(Yii::t('app', 'Search')); ?>
 	</div>

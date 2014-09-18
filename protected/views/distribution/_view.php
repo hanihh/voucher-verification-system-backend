@@ -16,5 +16,11 @@
 	<?php echo GxHtml::encode($data->getAttributeLabel('online')); ?>:
 	<?php echo GxHtml::encode($data->online); ?>
 	<br />
+	<?php echo GxHtml::encode($data->getAttributeLabel('title_ar')); ?>:
+	<?php echo GxHtml::encode($data->title_ar); ?>
+	<br />
+	<?php echo GxHtml::encode($data->getAttributeLabel('title_en')); ?>:
+	<?php echo GxHtml::encode($data->title_en); ?>
+	<br />
 
 </div>

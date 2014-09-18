@@ -32,6 +32,8 @@ array(
 			'value' => $model->donor !== null ? GxHtml::link(GxHtml::encode(GxHtml::valueEx($model->donor)), array('donor/view', 'id' => GxActiveRecord::extractPkValue($model->donor, true))) : null,
 			),
 'online',
+'title_ar',
+'title_en',
 	),
 )); ?>
 

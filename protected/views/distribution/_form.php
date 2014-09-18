@@ -33,6 +33,16 @@
 		<?php echo $form->textField($model, 'online'); ?>
 		<?php echo $form->error($model,'online'); ?>
 		</div><!-- row -->
+		<div class="row">
+		<?php echo $form->labelEx($model,'title_ar'); ?>
+		<?php echo $form->textField($model, 'title_ar', array('maxlength' => 40)); ?>
+		<?php echo $form->error($model,'title_ar'); ?>
+		</div><!-- row -->
+		<div class="row">
+		<?php echo $form->labelEx($model,'title_en'); ?>
+		<?php echo $form->textField($model, 'title_en', array('maxlength' => 40)); ?>
+		<?php echo $form->error($model,'title_en'); ?>
+		</div><!-- row -->
 
 		<label><?php echo GxHtml::encode($model->getRelationLabel('subdistributions')); ?></label>
 		<?php echo $form->checkBoxList($model, 'subdistributions', GxHtml::encodeEx(GxHtml::listDataEx(Subdistribution::model()->findAllAttributes(null, true)), false, true)); ?>

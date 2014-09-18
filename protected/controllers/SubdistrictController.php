@@ -72,5 +72,28 @@ class SubdistrictController extends BaseController {
 			'model' => $model,
 		));
 	}
+        
+        public function actionDynamicsubdistricts()
+        {
+            /*if (isset($_GET['district_id']) && !empty($_GET['district_id'])) {
+                $data= Subdistrict::model()->findAll('district_id=:district_id', 
+                          array(':district_id'=>(int) $_GET['district_id']));
+            } else {
+                $data= Subdistrict::model()->findAll();
+            }
+            header('Content-type: application/json', true, 200);
+            echo CJSON::encode($data, 'id', 'code','en_name', 'ar_name');
+            Yii::app()->end();  
+             * 
+             */
+            /*$data=CHtml::listData($data,'id','en_name');
+            echo CHtml::tag('option',
+                           array('value'=>0),"-- Select One --",true);
+            foreach($data as $value=>$name)
+            {
+                echo CHtml::tag('option',
+                           array('value'=>$value),CHtml::encode($name),true);
+            }*/
+        }
 
 }

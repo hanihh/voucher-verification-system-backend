@@ -73,4 +73,26 @@ class GovernorateController extends BaseController {
 		));
 	}
 
+        public function actionDynamiccities()
+        {
+            /*if (isset($_GET['country_id']) && !empty($_GET['country_id'])) {
+                $data=  Governorate::model()->findAll('country_id=:country_id', 
+                          array(':country_id'=>(int) $_POST['country_id']));
+            } else {
+                $data=  Governorate::model()->findAll();
+            }
+            header('Content-type: application/json', true, 200);
+            echo CJSON::encode($data, 'id', 'code','en_name', 'ar_name');
+            Yii::app()->end();  
+             * 
+             */
+            /*$data=CHtml::listData($data,'id','en_name');
+            echo CHtml::tag('option',
+                           array('value'=>0),"-- Select One --",true);
+            foreach($data as $value=>$name)
+            {
+                echo CHtml::tag('option',
+                           array('value'=>$value),CHtml::encode($name),true);
+            }*/
+        }
 }

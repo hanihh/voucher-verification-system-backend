@@ -55,6 +55,10 @@ You may optionally enter a comparison operator (&lt;, &lt;=, &gt;, &gt;=, &lt;&g
 				'filter'=>GxHtml::listDataEx(Donor::model()->findAllAttributes(null, true)),
 				),
 		'online',
+		'title_ar',
+		/*
+		'title_en',
+		*/
 		array(
 			'class' => 'CButtonColumn',
 		),
