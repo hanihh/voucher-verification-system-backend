@@ -214,4 +214,154 @@ class VoucherController extends BaseController {
         }
     }
 
+    private function checkPhone($phoneImei) {
+        $imei = substr($phoneImei, 0, 15);
+        $mobile = Phone::model()->find("imei = '" . $imei . "'");
+        if (!$mobile) {
+            return false;
+        }
+        return $mobile;
+    }
+
+    private function respond($error_code = NULL, $data = [], $lang = 'en', $historyIntry = NULL) {
+        // prepare json response
+        // save a log value -- passed as a paramaeter and need the result to be added
+        // bring the right error statement depending on the language
+        
+        header('Content-type: application/json; charset=UTF-8');
+        if ($error_code) {
+            $error = Error::model()->find('code = :code', array(":code" => $error_code));
+            $return['success'] = 0;
+            $return['data'] = NULL;
+            $return['error'] = ($lang == 'ar') ? $error->ar_text : (($lang == 'tr') ? $error->tr_text : $error->en_text);
+            
+        } elseif ($data) {
+            $return['success'] = 1;
+            $return['data'] = $data;
+            $return['error'] = NULL;    
+        }
+        $historyIntry->result =  CJavaScript::jsonEncode($return) ;
+        $historyIntry->insert();
+        $historyIntry->save();
+        echo CJavaScript::jsonEncode($return);
+        Yii::app()->end();
+    }
+
+    public function actionCheckVoucher() {
+        $this->layout = false;
+        $return = [];
+        $error = 0;
+        $lang = 'en';
+        $history_intry = new VoucherHistory;
+        $history_intry->action = VoucherAction::model()->find("name = 'CHECK'")->id;
+        $get = "";
+        
+        if ((isset($_GET) && !empty($_GET))) {
+            foreach ($_GET as $key => $value) {
+                $get .= $key . " => " . $value . "/";
+            }
+            $history_intry->parameters = $get;
+            $in_array = array('en', 'ar', 'tr');
+            if (isset($_GET['lang']) && !empty($_GET['lang']) && in_array($_GET['lang'], $in_array)) {
+                $lang = $_GET['lang'];
+            }
+            if (!isset($_GET['voucher_code']) ||
+                    empty($_GET['voucher_code']) ||
+                    !isset($_GET['imei']) ||
+                    empty($_GET['imei']) ||
+                    !preg_match('/^[A-Za-z0-9]+$/', $_GET['voucher_code']) ||
+                    !preg_match('/^[0-9]+$/', $_GET['imei'])) {
+                $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
+            }
+            $voucher_no = $_GET['voucher_code'];
+            $imei = substr($_GET['imei'], 0, 15);
+            if (!$this->checkPhone($imei)) {
+                $this->respond("ERR_DEVICE_NOT_FOUND", [], $lang, $history_intry);
+            }
+
+            $data = [];
+            $voucher = Voucher::model()->find("code = '" . $voucher_no . "'");
+            if (!$voucher) {
+                $this->respond("ERR_NOT_EXIST", [], $lang, $history_intry);
+            }
+            $history_intry->code = $voucher->code;
+            $data['voucher_code'] = $voucher->code;
+            $voucher_status = $voucher->status;
+            $data['voucher_status'] = ($lang == 'ar') ? $voucher_status->arabic_msg : (($lang == 'tr') ? $voucher_status->turkish_msg : $voucher_status->english_msg);
+            $data['voucher_value'] = $voucher->distributionVoucher->value;
+            $this->respond(NULL, $data, $lang, $history_intry);
+        } else {
+            $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
+        }
+    }
+
+    public function actionMobileApi() {
+        $this->layout = false;
+        header('Content-type: application/json; charset=UTF-8');
+        $arr = array();
+        if ((isset($_POST) && !empty($_POST))) {
+            $voucher_no = $_POST['voucher_code'];
+            $imei = substr($_POST['imei'], 0, 15);
+            $mobile = Phone::model()->find("imei = '" . $imei . "'");
+            if (!$mobile) {
+                $arr['error'] = "Sorry! This is not a valid phone\nÜzgünüz! Bu uygun bir telefon değildir.";
+                $arr['result'] = 'failed';
+                echo CJavaScript::jsonEncode($arr);
+                Yii::app()->end();
+            }
+            $voucher = Voucher::model()->find("code = '" . $voucher_no . "'");
+            $ben = $voucher->ben;
+            $voucherTypeValue = $voucher->distributionVoucher->value;
+
+            if ($voucher) {
+                $voucherStatus = $voucher->status;
+                $VoucherType = $voucher->distributionVoucher->type;
+                $arr['voucher_code'] = $voucher->code;
+                if (isset($_POST['redeem']) && $_POST['redeem'] == "1") {
+                    $voucherAction = VoucherAction::model()->find("name = 'redeem'");
+                    $voucherHistory = new VoucherHistory();
+                    $voucherHistory->action = $voucherAction->id;
+                    $voucherHistory->code = $voucher->code;
+                    $post = '';
+                    foreach ($_POST as $key => $value) {
+                        $post .= $key . " => " . $value . "/";
+                    }
+                    $voucherHistory->parameters = $post;
+                    $voucherHistory->insert();
+                    $voucherHistory->save();
+                    //make all checks...
+                    if ($voucherStatus->name == 'REDEEMED') {
+                        $arr['error'] = "This voucher is already redeemed\nBu makbuz zaten kullanılmıştır.";
+                        $arr['result'] = "failed";
+                    } else if ($voucherStatus->name == 'EXPIRED') {
+                        $arr['error'] = "This voucher is expired \nBu makbuz Süresi dolan.";
+                        $arr['result'] = "failed";
+                    } else if ($voucherStatus->name == 'NOT VALID') {
+                        $arr['error'] = "This voucher is not valid \nBu makbuz geçerli değil.";
+                        $arr['result'] = "failed";
+                    } else {
+                        $voucher->status_id = 2;
+                        $voucher->update();
+                        $voucher->save();
+                        $arr['error'] = '';
+                        $arr['result'] = 'success';
+                        $arr['beneficiary_code'] = $ben->registration_code;
+                        $arr['value'] = $voucherTypeValue;
+                        //$arr['imei'] = $_POST['imei'];
+                    }
+                } else {
+                    $voucherAction = VoucherAction::model()->find("name = 'check'");
+                    $arr['voucher'] = $voucher->code;
+                    $arr['voucher_status'] = $voucherStatus->description;
+                    $arr['voucher_value'] = $VoucherType->value;
+                }
+            } else {
+                $arr['error'] = "Sorry! This is not a valid voucher code\nÜzgünüz! Bu uygun bir makbuz kodu değildir.";
+                $arr['result'] = 'failed';
+            }
+        }
+        echo CJavaScript::jsonEncode($arr);
+        Yii::app()->end();
+    }
+
 }
