@@ -72,5 +72,16 @@ class DistributionController extends BaseController {
 			'model' => $model,
 		));
 	}
+        
+        public function actionPrint($id) {
+            $subdistributions = Subdistribution::model()->findAll("distribution_id = :distribution_id", array(":distribution_id" => $id));
+            Yii::import('application.controllers.SubdistributionController');
+            $obj = new SubdistributionController("");
+            $html = "";
+            foreach ($subdistributions as $subdistribution ) {
+                $html .= $obj->actionPrint($subdistribution->id);
+            }
+            echo $html;
+        }
 
 }

@@ -72,5 +72,25 @@ class SubdistributionController extends BaseController {
 			'model' => $model,
 		));
 	}
+        
+        public function actionPrint($id) {
+            $distributionVouchers = DistributionVoucher::model()->findAll("subdistribution_id = :subdistribution_id", array (":subdistribution_id" => $id));
+            $criteria = new CDbCriteria;
+            $criteria_string = "distribution_voucher_id in (0";
+            foreach ($distributionVouchers as $voucher_type) {
+                $criteria_string = $criteria_string . ", " . $voucher_type->id;
+            }
+            $criteria_string = $criteria_string . ")";
+            $criteria->addCondition($criteria_string);
+            $vouchers = Voucher::model()->findAll($criteria);
+            Yii::import('application.controllers.VoucherController');
+            $obj = new VoucherController("");
+            $html = '';
+            foreach ($vouchers as $voucher) {
+                $html .= $obj->actionPrint($vouchers[0]->id);
+            }
+            echo $html;
+                
+        }
 
 }

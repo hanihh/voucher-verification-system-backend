@@ -163,7 +163,9 @@ class VoucherController extends BaseController {
                 //Yii::app()->createUrl('//Utility/QrGenerate',array("qrdata"=>$voucher->code, 'qrfilename' => $voucher->ben->registration_code . "_".$voucher->distributionVoucher->value, 'qrfilepath'=> $qr_path));
                 $qr_path = Yii::app()->params['VOUCHERS_QR_PATH'] . DIRECTORY_SEPARATOR . $voucher->distributionVoucher->subdistribution->distribution->id . DIRECTORY_SEPARATOR . $voucher->distributionVoucher->subdistribution->id . DIRECTORY_SEPARATOR;
                 QRCode::png($voucher->code, $qr_path . $voucher->code . ".png", QR_ECLEVEL_M, 4, 1);
-                header('Content-Type: text/html; charset=utf-8');
+                if (!headers_sent()) {
+                    header('Content-Type: text/html; charset=utf-8');
+                }
 
                 $html_output = "<style type=\"text/css\">
                         table { page-break-inside:avoid }
