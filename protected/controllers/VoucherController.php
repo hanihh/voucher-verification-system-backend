@@ -227,20 +227,19 @@ class VoucherController extends BaseController {
         // prepare json response
         // save a log value -- passed as a paramaeter and need the result to be added
         // bring the right error statement depending on the language
-        
+
         header('Content-type: application/json; charset=UTF-8');
         if ($error_code) {
             $error = Error::model()->find('code = :code', array(":code" => $error_code));
             $return['success'] = 0;
             $return['data'] = NULL;
             $return['error'] = ($lang == 'ar') ? $error->ar_text : (($lang == 'tr') ? $error->tr_text : $error->en_text);
-            
         } elseif ($data) {
             $return['success'] = 1;
             $return['data'] = $data;
-            $return['error'] = NULL;    
+            $return['error'] = NULL;
         }
-        $historyIntry->result =  CJavaScript::jsonEncode($return) ;
+        $historyIntry->result = CJavaScript::jsonEncode($return);
         $historyIntry->insert();
         $historyIntry->save();
         echo CJavaScript::jsonEncode($return);
@@ -255,7 +254,7 @@ class VoucherController extends BaseController {
         $history_intry = new VoucherHistory;
         $history_intry->action = VoucherAction::model()->find("name = 'CHECK'")->id;
         $get = "";
-        
+        //$my_string = filter_input(INPUT_GET, "lang", FILTER_SANITIZE_STRING);
         if ((isset($_GET) && !empty($_GET))) {
             foreach ($_GET as $key => $value) {
                 $get .= $key . " => " . $value . "/";
@@ -263,7 +262,7 @@ class VoucherController extends BaseController {
             $history_intry->parameters = $get;
             $in_array = array('en', 'ar', 'tr');
             if (isset($_GET['lang']) && !empty($_GET['lang']) && in_array($_GET['lang'], $in_array)) {
-                $lang = $_GET['lang'];
+                $lang = filter_input(INPUT_GET, "lang", FILTER_SANITIZE_STRING);
             }
             if (!isset($_GET['voucher_code']) ||
                     empty($_GET['voucher_code']) ||
@@ -273,8 +272,9 @@ class VoucherController extends BaseController {
                     !preg_match('/^[0-9]+$/', $_GET['imei'])) {
                 $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
             }
-            $voucher_no = $_GET['voucher_code'];
-            $imei = substr($_GET['imei'], 0, 15);
+
+            $voucher_no = filter_input(INPUT_GET, "voucher_code", FILTER_SANITIZE_STRING);
+            $imei = substr(filter_input(INPUT_GET, "imei", FILTER_SANITIZE_STRING), 0, 15);
             if (!$this->checkPhone($imei)) {
                 $this->respond("ERR_DEVICE_NOT_FOUND", [], $lang, $history_intry);
             }
@@ -290,6 +290,62 @@ class VoucherController extends BaseController {
             $data['voucher_status'] = ($lang == 'ar') ? $voucher_status->arabic_msg : (($lang == 'tr') ? $voucher_status->turkish_msg : $voucher_status->english_msg);
             $data['voucher_value'] = $voucher->distributionVoucher->value;
             $this->respond(NULL, $data, $lang, $history_intry);
+        } else {
+            $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
+        }
+    }
+
+    public function actionRedeemVoucher() {
+        $this->layout = false;
+        $return = [];
+        $error = 0;
+        $lang = 'en';
+        $history_intry = new VoucherHistory;
+        $history_intry->action = VoucherAction::model()->find("name = 'REDEEM'")->id;
+        $post = "";
+        if ((isset($_POST) && !empty($_POST))) {
+            foreach ($_POST as $key => $value) {
+                $post .= $key . " => " . $value . "/";
+            }
+            $history_intry->parameters = $post;
+            $in_array = array('en', 'ar', 'tr');
+            if (isset($_POST['lang']) && !empty($_POST['lang']) && in_array($_POST['lang'], $in_array)) {
+                $lang = filter_input(INPUT_GET, "lang", FILTER_SANITIZE_STRING);
+            }
+
+            $voucher_no = filter_input(INPUT_POST, "voucher_code", FILTER_SANITIZE_STRING);
+            $imei = substr(filter_input(INPUT_POST, "imei", FILTER_SANITIZE_STRING), 0, 15);
+            if (!$voucher_no || !$imei || !preg_match('/^[A-Za-z0-9]{10}$/', $voucher_no) || !preg_match('/^[0-9]{15}$/', $imei)) {
+                $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
+            }
+
+            if (!$this->checkPhone($imei)) {
+                $this->respond("ERR_DEVICE_NOT_FOUND", [], $lang, $history_intry);
+            }
+
+            $data = [];
+            $voucher = Voucher::model()->find("code = '" . $voucher_no . "'");
+            if (!$voucher) {
+                $this->respond("ERR_NOT_EXIST", [], $lang, $history_intry);
+            }
+
+            $history_intry->code = $voucher->code;
+            $voucher_status = $voucher->status;
+            if ($voucher_status->name == 'REDEEMED') {
+                $this->respond('ERR_ALREADY_REDEEMED', [], $lang, $history_intry);
+            } else if ($voucher_status->name == 'EXPIRED') {
+                $this->respond('ERR_EXPIRED', [], $lang, $history_intry);
+            } else if ($voucher_status->name == 'NOT VALID') {
+                $this->respond('ERR_NOT_VALID', [], $lang, $history_intry);
+            } else {
+                $voucher->status_id = 2;
+                $voucher->update();
+                $voucher->save();
+                $data['voucher_code'] = $voucher->code;
+                $data['beneficiary_code'] = $voucher->ben->registration_code;
+                $data['value'] = $voucher->distributionVoucher->value;
+                $this->respond(NULL, $data, $lang, $history_intry);
+            }
         } else {
             $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
         }
