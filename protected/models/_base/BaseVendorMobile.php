@@ -10,11 +10,11 @@
  * followed by relations of table "vendor_mobile" available as properties of the model.
  *
  * @property integer $id
- * @property integer $subdistribution_id
+ * @property integer $distribution_id
  * @property integer $vendor_id
  * @property integer $phone_id
  *
- * @property Subdistribution $subdistribution
+ * @property Distribution $distribution
  * @property Vendor $vendor
  * @property Phone $phone
  */
@@ -38,15 +38,15 @@ abstract class BaseVendorMobile extends GxActiveRecord {
 
 	public function rules() {
 		return array(
-			array('subdistribution_id, vendor_id, phone_id', 'required'),
-			array('subdistribution_id, vendor_id, phone_id', 'numerical', 'integerOnly'=>true),
-			array('id, subdistribution_id, vendor_id, phone_id', 'safe', 'on'=>'search'),
+			array('distribution_id, vendor_id, phone_id', 'required'),
+			array('distribution_id, vendor_id, phone_id', 'numerical', 'integerOnly'=>true),
+			array('id, distribution_id, vendor_id, phone_id', 'safe', 'on'=>'search'),
 		);
 	}
 
 	public function relations() {
 		return array(
-			'subdistribution' => array(self::BELONGS_TO, 'Subdistribution', 'subdistribution_id'),
+			'distribution' => array(self::BELONGS_TO, 'Distribution', 'distribution_id'),
 			'vendor' => array(self::BELONGS_TO, 'Vendor', 'vendor_id'),
 			'phone' => array(self::BELONGS_TO, 'Phone', 'phone_id'),
 		);
@@ -60,10 +60,10 @@ abstract class BaseVendorMobile extends GxActiveRecord {
 	public function attributeLabels() {
 		return array(
 			'id' => Yii::t('app', 'ID'),
-			'subdistribution_id' => null,
+			'distribution_id' => null,
 			'vendor_id' => null,
 			'phone_id' => null,
-			'subdistribution' => null,
+			'distribution' => null,
 			'vendor' => null,
 			'phone' => null,
 		);
@@ -73,7 +73,7 @@ abstract class BaseVendorMobile extends GxActiveRecord {
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id);
-		$criteria->compare('subdistribution_id', $this->subdistribution_id);
+		$criteria->compare('distribution_id', $this->distribution_id);
 		$criteria->compare('vendor_id', $this->vendor_id);
 		$criteria->compare('phone_id', $this->phone_id);
 

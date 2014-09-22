@@ -16,7 +16,7 @@
  * @property string $deleted_at
  * @property string $arabic_msg
  * @property string $english_msg
- * @property string $turkish_text
+ * @property string $turkish_msg
  *
  * @property Voucher[] $vouchers
  */
@@ -42,9 +42,9 @@ abstract class BaseVoucherStatus extends GxActiveRecord {
 		return array(
 			array('name, create_date', 'required'),
 			array('name', 'length', 'max'=>255),
-			array('description, deleted_at, arabic_msg, english_msg, turkish_text', 'safe'),
-			array('description, deleted_at, arabic_msg, english_msg, turkish_text', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('id, name, create_date, description, deleted_at, arabic_msg, english_msg, turkish_text', 'safe', 'on'=>'search'),
+			array('description, deleted_at, arabic_msg, english_msg, turkish_msg', 'safe'),
+			array('description, deleted_at, arabic_msg, english_msg, turkish_msg', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('id, name, create_date, description, deleted_at, arabic_msg, english_msg, turkish_msg', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,7 +68,7 @@ abstract class BaseVoucherStatus extends GxActiveRecord {
 			'deleted_at' => Yii::t('app', 'Deleted At'),
 			'arabic_msg' => Yii::t('app', 'Arabic Msg'),
 			'english_msg' => Yii::t('app', 'English Msg'),
-			'turkish_text' => Yii::t('app', 'Turkish Text'),
+			'turkish_msg' => Yii::t('app', 'Turkish Msg'),
 			'vouchers' => null,
 		);
 	}
@@ -83,7 +83,7 @@ abstract class BaseVoucherStatus extends GxActiveRecord {
 		$criteria->compare('deleted_at', $this->deleted_at, true);
 		$criteria->compare('arabic_msg', $this->arabic_msg, true);
 		$criteria->compare('english_msg', $this->english_msg, true);
-		$criteria->compare('turkish_text', $this->turkish_text, true);
+		$criteria->compare('turkish_msg', $this->turkish_msg, true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,

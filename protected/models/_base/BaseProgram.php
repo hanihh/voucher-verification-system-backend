@@ -21,70 +21,71 @@
  */
 abstract class BaseProgram extends GxActiveRecord {
 
-	public static function model($className=__CLASS__) {
-		return parent::model($className);
-	}
+    public static function model($className = __CLASS__) {
+        return parent::model($className);
+    }
 
-	public function tableName() {
-		return 'program';
-	}
+    public function tableName() {
+        return 'program';
+    }
 
-	public static function label($n = 1) {
-		return Yii::t('app', 'Program|Programs', $n);
-	}
+    public static function label($n = 1) {
+        return Yii::t('app', 'Program|Programs', $n);
+    }
 
-	public static function representingColumn() {
-		return 'name';
-	}
+    public static function representingColumn() {
+        return 'name';
+    }
 
-	public function rules() {
-		return array(
-			array('name, code, create_date', 'required'),
-			array('name', 'length', 'max'=>255),
-			array('code', 'length', 'max'=>10),
-			array('deleted_at', 'safe'),
-			array('deleted_at', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('id, name, code, create_date, deleted_at', 'safe', 'on'=>'search'),
-		);
-	}
+    public function rules() {
+        return array(
+            array('name, code, create_date', 'required'),
+            array('name', 'length', 'max' => 255),
+            array('code', 'length', 'max' => 10),
+            array('deleted_at', 'safe'),
+            array('deleted_at', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, name, code, create_date, deleted_at', 'safe', 'on' => 'search'),
+        );
+    }
 
-	public function relations() {
-		return array(
-			'distributions' => array(self::HAS_MANY, 'Distribution', 'program_id'),
-			'vendorTypes' => array(self::HAS_MANY, 'VendorType', 'program_id'),
-			'voucherTypes' => array(self::HAS_MANY, 'VoucherType', 'program_id'),
-		);
-	}
+    public function relations() {
+        return array(
+            'distributions' => array(self::HAS_MANY, 'Distribution', 'program_id'),
+            'vendorTypes' => array(self::HAS_MANY, 'VendorType', 'program_id'),
+            'voucherTypes' => array(self::HAS_MANY, 'VoucherType', 'program_id'),
+        );
+    }
 
-	public function pivotModels() {
-		return array(
-		);
-	}
+    public function pivotModels() {
+        return array(
+        );
+    }
 
-	public function attributeLabels() {
-		return array(
-			'id' => Yii::t('app', 'ID'),
-			'name' => Yii::t('app', 'Name'),
-			'code' => Yii::t('app', 'Code'),
-			'create_date' => Yii::t('app', 'Create Date'),
-			'deleted_at' => Yii::t('app', 'Deleted At'),
-			'distributions' => null,
-			'vendorTypes' => null,
-			'voucherTypes' => null,
-		);
-	}
+    public function attributeLabels() {
+        return array(
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'code' => Yii::t('app', 'Code'),
+            'create_date' => Yii::t('app', 'Create Date'),
+            'deleted_at' => Yii::t('app', 'Deleted At'),
+            'distributions' => null,
+            'vendorTypes' => null,
+            'voucherTypes' => null,
+        );
+    }
 
-	public function search() {
-		$criteria = new CDbCriteria;
+    public function search() {
+        $criteria = new CDbCriteria;
 
-		$criteria->compare('id', $this->id);
-		$criteria->compare('name', $this->name, true);
-		$criteria->compare('code', $this->code, true);
-		$criteria->compare('create_date', $this->create_date, true);
-		$criteria->compare('deleted_at', $this->deleted_at, true);
+        $criteria->compare('id', $this->id);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('code', $this->code, true);
+        $criteria->compare('create_date', $this->create_date, true);
+        $criteria->compare('deleted_at', $this->deleted_at, true);
 
-		return new CActiveDataProvider($this, array(
-			'criteria' => $criteria,
-		));
-	}
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
 }
