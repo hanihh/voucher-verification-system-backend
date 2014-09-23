@@ -25,7 +25,7 @@ var District = Base.extend({
         district.code = jsonObj.code;
         district.governorate = jsonObj.governorate;
         
-        foreach (x in jsonObj.subdistricts)
+        for(x in jsonObj.subdistricts)
         {
             var subdistrict = new subdistrict();           
             district.subdistricts.append(subdistrict.parse(x));

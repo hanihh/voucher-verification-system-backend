@@ -32,7 +32,7 @@ var Phone = Base.extend({
             phone.delete_at = jsonObj.delete_at;
             phone.available = jsonObj.type;
                        
-            foreach (x in jsonObj.vendor_mobiles)
+            for (x in jsonObj.vendor_mobiles)
             {
                 var vendor_mobile = new Vendor_mobile();           
                 phone.vendor_mobiles.append(vendor_mobile.parse(x));

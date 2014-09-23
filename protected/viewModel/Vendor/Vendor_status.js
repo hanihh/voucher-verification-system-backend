@@ -32,7 +32,7 @@ var Vendor_status = Base.extend({
             vendor_status.description = "";
             vendor_status.delete_at = jsonObj.delete_at;
             
-            foreach (x in jsonObj.vendors)
+            for (x in jsonObj.vendors)
             {
                 var vendor = new Vendor();           
                 vendor_status.vendors.append(vendor.parse(x));

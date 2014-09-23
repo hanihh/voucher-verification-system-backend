@@ -50,13 +50,13 @@ var Beneficiary = Base.extend({
         beneficiary.main_income_source = jsonObj.main_income_source;
         beneficiary.combine_household = jsonObj.combine_household;
        
-        foreach(x in jsonObj.beneficiart_status)
+        for(x in jsonObj.beneficiart_status)
         {
             var beneficiart_status = new Beneficiart_status();
             beneficiary.beneficiart_status.append(beneficiart_status.parse(x));
         }
         
-        foreach(x in jsonObj.community)
+        for(x in jsonObj.community)
         {
             var community = new Community();
             beneficiary.beneficiart_status.append(community.parse(x));

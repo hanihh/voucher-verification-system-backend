@@ -31,7 +31,7 @@ var Vendor_mobile = Base.extend({
             vendor_mobile.id = jsonObj.id;
             vendor_mobile.subdistribution = jsonObj.subdistribution;
             vendor_mobile.vendor = jsonObj.vendor;
-             vendor_mobile.phone = jsonObj.phone;
+            vendor_mobile.phone = jsonObj.phone;
                        
           
             return vendor_mobile;

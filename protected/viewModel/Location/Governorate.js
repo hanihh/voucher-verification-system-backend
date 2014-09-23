@@ -7,11 +7,11 @@
 $.getScript("../Base.js", function(){});
 
 var Governorate = Base.extend({
-    init: function(id, code, ar_name, en_name) {    
+    init: function() {    
         this.id = id;
-        this.ar_name = ar_name;
-        this.en_name = en_name;
-        this.code = code;
+        this.ar_name = "";
+        this.en_name = "";
+        this.code = "";
         this.country = "";               
         this.districts = [];
     },
@@ -25,7 +25,7 @@ var Governorate = Base.extend({
             governorate.code = jsonObj.code;
             governorate.country = jsonObj.country;
             
-            foreach (x in jsonObj.districts)
+            for (x in jsonObj.districts)
             {
                 var district = new District();           
                 governorate.districts.append(district.parse(x));

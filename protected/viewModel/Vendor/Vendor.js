@@ -37,19 +37,19 @@ var Vendor = Base.extend({
             vendor.type = jsonObj.type;
             vendor.delete_at = jsonObj.delete_at;
                        
-            foreach (x in jsonObj.vouchers)
+            for (x in jsonObj.vouchers)
             {
                 var voucher = new Voucher();           
                 vendor.vouchers.append(voucher.parse(x));
             }
             
-            foreach (x in jsonObj.vendor_notes)
+            for (x in jsonObj.vendor_notes)
             {
                 var vendor_note = new Vendor_note();
                 vendor.vendor_notes.append(vendor_note.parse(x));
             }
             
-             foreach (x in jsonObj.vendor_mobiles)
+             for (x in jsonObj.vendor_mobiles)
             {
                 var vendor_mobile = new Vendor_mobile();
                 vendor.vendor_mobiles.append(vendor_mobile.parse(x));

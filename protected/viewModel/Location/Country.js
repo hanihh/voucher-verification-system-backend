@@ -22,7 +22,7 @@ var Country = Base.extend({
             country.name = jsonObj.name;
             country.code = jsonObj.code;
             
-            foreach (x in jsonObj.governorates)
+            for(x in jsonObj.governorates)
             {
                 var gov = new Governorate();           
                 country.governorates.append(gov.parse(x));

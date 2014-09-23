@@ -34,13 +34,13 @@ var Vendor_type = Base.extend({
             Vendor_type.internal = jsonObj.internal;
             Vendor_type.program = jsonObj.program;
             
-            foreach (x in jsonObj.vendors)
+            for (x in jsonObj.vendors)
             {
                 var vendor = new Vendor();           
                 vendor_type.vendors.append(vendor.parse(x));
             }
             
-            foreach (x in jsonObj.subdistributions)
+            for (x in jsonObj.subdistributions)
             {
                 var subdistribution = new Subdistribution();           
                 vendor_type.subdistributions.append(subdistribution.parse(x));

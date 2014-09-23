@@ -28,13 +28,13 @@ var Community = Base.extend({
             community.code = jsonObj.code;
             community.subdistrict = jsonObj.subdistrict;
             
-            foreach (x in jsonObj.beneficiaries)
+            for (x in jsonObj.beneficiaries)
             {
                 var beneficiary = new Beneficiary();           
                 community.beneficiaries.append(beneficiarie.parse(x));
             }
             
-            foreach (x in jsonObj.subdistributions)
+            for (x in jsonObj.subdistributions)
             {
                 var subdistribution = new Subdistribution();           
                 community.subdistributions.append(subdistribution.parse(x));
