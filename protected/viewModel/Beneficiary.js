@@ -5,3 +5,11 @@
  */
 
 
+Beneficiary = Base.extend({
+    
+   // Beneficiary() {
+    //}
+    
+    
+    
+});
