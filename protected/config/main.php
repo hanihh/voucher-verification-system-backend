@@ -7,7 +7,7 @@
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Voucher Verification System',
-    'theme'=>'metronic',
+    //'theme'=>'metronic',
 
     // preloading 'log' component
     'preload' => array('log'),
