@@ -13,6 +13,11 @@
  */
 class BaseController extends GxController {
 
+    public function actionIndex() {
+        $this->layout = "new";
+        $this->render('index');
+    }
+    
     public function filters() {
 
         return array(
