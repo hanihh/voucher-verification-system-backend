@@ -1,6 +1,8 @@
 <?php
 
-class DonorController extends GxController {
+Yii::import('application.controllers.BaseController');
+
+class DonorController extends BaseController {
 
 
 	public function actionView($id) {
