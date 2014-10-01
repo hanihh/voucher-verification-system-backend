@@ -11,8 +11,7 @@ class DistributionController extends BaseController {
 
 	public function actionCreate() {
 		$model = new Distribution;
-
-
+                                    
 		if (isset($_POST['Distribution'])) {
 			$model->setAttributes($_POST['Distribution']);
 
