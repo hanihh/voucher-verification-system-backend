@@ -1,5 +1,5 @@
 <?php
-
+ header("Access-Control-Allow-Origin: *");
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 // This is the main Web application configuration. Any writable
@@ -38,8 +38,8 @@ return array(
     'behaviors' => array(
             array('class' => 'application.extensions.CorsBehavior.CorsBehavior',
                 'route' =>'*',
-                'allowOrigin' => '*'
-                ),
+                'allowOrigin' => '*'          
+                )
         ),
     
     
