@@ -4,13 +4,7 @@ Yii::import('application.models.helpers.BeneficiaryImportResult');
 
 class BeneficiaryController extends BaseController {
 
-        public function filters()
-        {
-            parent::filters();
-            return array(
-                "postOnly + import"
-            );
-        }
+        
 	public function actionView($id) {
 		$this->render('view', array(
 			'model' => $this->loadModel($id, 'Beneficiary'),
