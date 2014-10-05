@@ -177,7 +177,7 @@ class ERestTestCase extends CTestCase
 	 * sets the Yii context to a logged in user
 	 */
 	protected function asUser($bind_class, Callable $callback)
-	{
+	{/*
 		$identity=new UserIdentity('admin', 'admin');
 		$identity->authenticate();
 		@Yii::app()->user->login($identity,0);
@@ -186,5 +186,7 @@ class ERestTestCase extends CTestCase
 		call_user_func($callback);
 
 		@Yii::app()->user->logout();
+         * 
+         */
 	}
 }
