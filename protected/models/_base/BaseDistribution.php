@@ -16,82 +16,91 @@
  * @property integer $online
  * @property string $title_ar
  * @property string $title_en
+ * @property string $start_date
+ * @property string $end_date
  *
  * @property Donor $donor
  * @property Program $program
  * @property Subdistribution[] $subdistributions
+ * @property VendorMobile[] $vendorMobiles
  */
 abstract class BaseDistribution extends GxActiveRecord {
 
-    public static function model($className = __CLASS__) {
-        return parent::model($className);
-    }
+	public static function model($className=__CLASS__) {
+		return parent::model($className);
+	}
 
-    public function tableName() {
-        return 'distribution';
-    }
+	public function tableName() {
+		return 'distribution';
+	}
 
-    public static function label($n = 1) {
-        return Yii::t('app', 'Distribution|Distributions', $n);
-    }
+	public static function label($n = 1) {
+		return Yii::t('app', 'Distribution|Distributions', $n);
+	}
 
-    public static function representingColumn() {
-        return 'name';
-    }
+	public static function representingColumn() {
+		return 'name';
+	}
 
-    public function rules() {
-        return array(
-            array('name', 'required'),
-            array('program_id, donor_id, online', 'numerical', 'integerOnly' => true),
-            array('name', 'length', 'max' => 50),
-            array('title_ar, title_en', 'length', 'max' => 40),
-            array('program_id, donor_id, online, title_ar, title_en', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, name, program_id, donor_id, online, title_ar, title_en', 'safe', 'on' => 'search'),
-        );
-    }
+	public function rules() {
+		return array(
+			array('name, start_date', 'required'),
+			array('program_id, donor_id, online', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>50),
+			array('title_ar, title_en', 'length', 'max'=>40),
+			array('end_date', 'safe'),
+			array('program_id, donor_id, online, title_ar, title_en, end_date', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('id, name, program_id, donor_id, online, title_ar, title_en, start_date, end_date', 'safe', 'on'=>'search'),
+		);
+	}
 
-    public function relations() {
-        return array(
-            'donor' => array(self::BELONGS_TO, 'Donor', 'donor_id'),
-            'program' => array(self::BELONGS_TO, 'Program', 'program_id'),
-            'subdistributions' => array(self::HAS_MANY, 'Subdistribution', 'distribution_id'),
-        );
-    }
+	public function relations() {
+		return array(
+			'donor' => array(self::BELONGS_TO, 'Donor', 'donor_id'),
+			'program' => array(self::BELONGS_TO, 'Program', 'program_id'),
+			'subdistributions' => array(self::HAS_MANY, 'Subdistribution', 'distribution_id'),
+			'vendorMobiles' => array(self::HAS_MANY, 'VendorMobile', 'distribution_id'),
+		);
+	}
 
-    public function pivotModels() {
-        return array(
-        );
-    }
+	public function pivotModels() {
+		return array(
+		);
+	}
 
-    public function attributeLabels() {
-        return array(
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
-            'program_id' => null,
-            'donor_id' => null,
-            'online' => Yii::t('app', 'Online'),
-            'title_ar' => Yii::t('app', 'Title Ar'),
-            'title_en' => Yii::t('app', 'Title En'),
-            'donor' => null,
-            'program' => null,
-            'subdistributions' => null,
-        );
-    }
+	public function attributeLabels() {
+		return array(
+			'id' => Yii::t('app', 'ID'),
+			'name' => Yii::t('app', 'Name'),
+			'program_id' => null,
+			'donor_id' => null,
+			'online' => Yii::t('app', 'Online'),
+			'title_ar' => Yii::t('app', 'Title Ar'),
+			'title_en' => Yii::t('app', 'Title En'),
+			'start_date' => Yii::t('app', 'Start Date'),
+			'end_date' => Yii::t('app', 'End Date'),
+			'donor' => null,
+			'program' => null,
+			'subdistributions' => null,
+			'vendorMobiles' => null,
+		);
+	}
 
-    public function search() {
-        $criteria = new CDbCriteria;
+	public function search() {
+		$criteria = new CDbCriteria;
 
-        $criteria->compare('id', $this->id);
-        $criteria->compare('name', $this->name, true);
-        $criteria->compare('program_id', $this->program_id);
-        $criteria->compare('donor_id', $this->donor_id);
-        $criteria->compare('online', $this->online);
-        $criteria->compare('title_ar', $this->title_ar, true);
-        $criteria->compare('title_en', $this->title_en, true);
+		$criteria->compare('id', $this->id);
+		$criteria->compare('name', $this->name, true);
+		$criteria->compare('program_id', $this->program_id);
+		$criteria->compare('donor_id', $this->donor_id);
+		$criteria->compare('online', $this->online);
+		$criteria->compare('title_ar', $this->title_ar, true);
+		$criteria->compare('title_en', $this->title_en, true);
+		$criteria->compare('start_date', $this->start_date, true);
+		$criteria->compare('end_date', $this->end_date, true);
 
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-        ));
-    }
-
+		return new CActiveDataProvider($this, array(
+			'criteria' => $criteria,
+		));
+	}
 }
