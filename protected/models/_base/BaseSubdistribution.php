@@ -13,7 +13,7 @@
  * @property string $code
  * @property string $start_date
  * @property string $end_date
- * @property integer $region_id
+ * @property integer $community_id
  * @property integer $distribution_id
  * @property integer $status_id
  * @property string $create_date
@@ -22,7 +22,7 @@
  *
  * @property DistributionVoucher[] $distributionVouchers
  * @property DistributionStatus $status
- * @property Community $region
+ * @property Community $community
  * @property Distribution $distribution
  */
 abstract class BaseSubdistribution extends GxActiveRecord {
@@ -45,12 +45,12 @@ abstract class BaseSubdistribution extends GxActiveRecord {
 
 	public function rules() {
 		return array(
-			array('code, start_date, region_id, distribution_id, status_id', 'required'),
-			array('region_id, distribution_id, status_id', 'numerical', 'integerOnly'=>true),
+			array('code, start_date, community_id, distribution_id, status_id', 'required'),
+			array('community_id, distribution_id, status_id', 'numerical', 'integerOnly'=>true),
 			array('code', 'length', 'max'=>25),
 			array('end_date, create_date, deleted_at, note', 'safe'),
 			array('end_date, create_date, deleted_at, note', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('id, code, start_date, end_date, region_id, distribution_id, status_id, create_date, deleted_at, note', 'safe', 'on'=>'search'),
+			array('id, code, start_date, end_date, community_id, distribution_id, status_id, create_date, deleted_at, note', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,7 +58,7 @@ abstract class BaseSubdistribution extends GxActiveRecord {
 		return array(
 			'distributionVouchers' => array(self::HAS_MANY, 'DistributionVoucher', 'subdistribution_id'),
 			'status' => array(self::BELONGS_TO, 'DistributionStatus', 'status_id'),
-			'region' => array(self::BELONGS_TO, 'Community', 'region_id'),
+			'community' => array(self::BELONGS_TO, 'Community', 'community_id'),
 			'distribution' => array(self::BELONGS_TO, 'Distribution', 'distribution_id'),
 		);
 	}
@@ -74,7 +74,7 @@ abstract class BaseSubdistribution extends GxActiveRecord {
 			'code' => Yii::t('app', 'Code'),
 			'start_date' => Yii::t('app', 'Start Date'),
 			'end_date' => Yii::t('app', 'End Date'),
-			'region_id' => null,
+			'community_id' => null,
 			'distribution_id' => null,
 			'status_id' => null,
 			'create_date' => Yii::t('app', 'Create Date'),
@@ -82,7 +82,7 @@ abstract class BaseSubdistribution extends GxActiveRecord {
 			'note' => Yii::t('app', 'Note'),
 			'distributionVouchers' => null,
 			'status' => null,
-			'region' => null,
+			'community' => null,
 			'distribution' => null,
 		);
 	}
@@ -94,7 +94,7 @@ abstract class BaseSubdistribution extends GxActiveRecord {
 		$criteria->compare('code', $this->code, true);
 		$criteria->compare('start_date', $this->start_date, true);
 		$criteria->compare('end_date', $this->end_date, true);
-		$criteria->compare('region_id', $this->region_id);
+		$criteria->compare('community_id', $this->community_id);
 		$criteria->compare('distribution_id', $this->distribution_id);
 		$criteria->compare('status_id', $this->status_id);
 		$criteria->compare('create_date', $this->create_date, true);
