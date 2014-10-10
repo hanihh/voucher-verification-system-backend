@@ -52,7 +52,7 @@ abstract class BaseCommunity extends GxActiveRecord {
 		return array(
 			'beneficiaries' => array(self::HAS_MANY, 'Beneficiary', 'neighborhood_id'),
 			'subdistrict' => array(self::BELONGS_TO, 'Subdistrict', 'subdistrict_id'),
-			'subdistributions' => array(self::HAS_MANY, 'Subdistribution', 'region_id'),
+			'subdistributions' => array(self::HAS_MANY, 'Subdistribution', 'community_id'),
 		);
 	}
 
