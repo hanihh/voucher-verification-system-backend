@@ -225,7 +225,7 @@ class VoucherController extends BaseController {
         return $mobile;
     }
 
-    private function respond($error_code = NULL, $data = [], $lang = 'en', $historyIntry = NULL) {
+    private function respond($error_code = NULL, $data = [], $lang = 'en', $historyIntry = NULL, $end = true) {
         // prepare json response
         // save a log value -- passed as a paramaeter and need the result to be added
         // bring the right error statement depending on the language
@@ -234,18 +234,21 @@ class VoucherController extends BaseController {
         if ($error_code) {
             $error = Error::model()->find('code = :code', array(":code" => $error_code));
             $return['success'] = 0;
-            $return['data'] = NULL;
+            $return['data'] = $data;
             $return['error'] = ($lang == 'ar') ? $error->ar_text : (($lang == 'tr') ? $error->tr_text : $error->en_text);
-        } elseif ($data) {
+        } else {
             $return['success'] = 1;
             $return['data'] = $data;
             $return['error'] = NULL;
         }
-        $historyIntry->result = CJavaScript::jsonEncode($return);
-        $historyIntry->insert();
-        $historyIntry->save();
+        if ($historyIntry) {
+            $historyIntry->result = CJavaScript::jsonEncode($return);
+            $historyIntry->insert();
+            $historyIntry->save();
+        }
         echo CJavaScript::jsonEncode($return);
-        Yii::app()->end();
+        if ($end)
+            Yii::app()->end();
     }
 
     public function actionCheckVoucher() {
@@ -352,4 +355,92 @@ class VoucherController extends BaseController {
             $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
         }
     }
+
+    public function actionsync() {
+        $this->layout = false;
+        $return = [];
+        $error = 0;
+        $lang = 'en';
+        $error_count = 0;
+        $sync_count = 0;
+        $in_array = array('en', 'ar', 'tr');
+        $history_intry = new VoucherHistory;
+        $history_intry->action = VoucherAction::model()->find("name = 'SYNC'")->id;
+        if ((isset($_POST) && !empty($_POST))) { // IMPORT MOBILE DATA
+            $post = "";
+            foreach ($_POST as $key => $value) {
+                $post .= $key . " => " . $value . "/";
+            }
+            $history_intry->parameters = $post;
+
+            if (isset($_POST['lang']) && !empty($_POST['lang']) && in_array($_POST['lang'], $in_array)) {
+                $lang = filter_input(INPUT_GET, "lang", FILTER_SANITIZE_STRING);
+            }
+            if (!isset($_POST['redeemed_voucher']) || empty($_POST['redeemed_voucher']))
+                $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
+            if (!isset($_POST['imei']) || empty($_POST['imei']))
+                $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
+            $voucher_codes = base64_decode($_POST['redeemed_voucher']);
+            $redeem_redeemed_status = VoucherStatus::model()->find("name = :name", array(":name" => "REDEEMED"));
+            foreach ($voucher_codes as $voucher_code) {
+                $voucher = Voucher::model()->find("code = :code", array(":code" => $voucher_code));
+                if (!$voucher) {
+                    $error_count += 1;
+                    $error .= $voucher_code . ", ";
+                } else {
+                    $voucher->status_id = $redeem_redeemed_status->id;
+                    $voucher->update();
+                    $voucher->save();
+                    $sync_count += 1;
+                }
+            }
+            if ($error_count > 0) {
+                $err_arr = [];
+                $err_arr['count'] = $error_count;
+                $err_arr['vouchers'] = $error;
+                $this->respond("NOT_ALL_SYNCED", $err_arr, $lang, $history_intry);
+            } else {
+                $this->respond(NULL, $sync_count, $lang, $history_intry);
+            }
+        } elseif ((isset($_GET) && !empty($_GET))) { // SEND NEW DATA
+            $get = "";
+            foreach ($_GET as $key => $value) {
+                $get .= $key . " => " . $value . "/";
+            }
+            $history_intry->parameters = $get;
+            if (!isset($_GET['imei']) || empty($_GET['imei']))
+                $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
+            if (isset($_GET['lang']) && !empty($_GET['lang']) && in_array($_GET['lang'], $in_array)) {
+                $lang = filter_input(INPUT_GET, "lang", FILTER_SANITIZE_STRING);
+            }
+            $imei = $_GET['imei'];
+            $phone = Phone::model()->find("imei = :imei", array(":imei" => $imei));
+            if (!$phone)
+                $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
+            $vendor_mobiles = VendorMobile::model()->findAll("phone_id = :phone_id", array(":phone_id" => $phone->id));
+            $export_list = [];
+            foreach ($vendor_mobiles as $vendor_mobile) {
+                $voucher_status = VoucherStatus::model()->find("name = :name", array(":name" => "PENDING"));
+                $vouchers = Voucher::model()->findAll("status_id = :status_id and vendor_id = :vendor_id", array(":status_id" => $voucher_status->id, ":vendor_id" => $vendor_mobile->vendor_id));
+                //print_r($vouchers);
+
+                foreach ($vouchers as $voucher) {
+                    if ($voucher->distributionVoucher->subdistribution->distribution->id == $vendor_mobile->distribution_id) {
+                        array_push($export_list, $voucher);
+                    }
+                }
+            }
+            $this->respond(NULL, $export_list, $lang, $history_intry, false);
+            foreach ($export_list as $item) {
+                $in_mobile_status = VoucherStatus::model()->find("name = 'IN_MOBILE'");
+                $item->status_id = $in_mobile_status->id;
+                $item->update();
+                $item->save();
+            }
+            Yii::app()->end();
+        } else {
+            $this->respond('ERR_INVALID_REEQUEST', [], $lang, NULL);
+        }
+    }
+
 }
