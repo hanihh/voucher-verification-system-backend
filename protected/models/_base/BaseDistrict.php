@@ -13,9 +13,9 @@
  * @property string $code
  * @property string $ar_name
  * @property string $en_name
- * @property integer $governerate_id
+ * @property integer $governorate_id
  *
- * @property Governorate $governerate
+ * @property Governorate $governorate
  * @property Subdistrict[] $subdistricts
  */
 abstract class BaseDistrict extends GxActiveRecord {
@@ -39,17 +39,17 @@ abstract class BaseDistrict extends GxActiveRecord {
 	public function rules() {
 		return array(
 			array('code, ar_name, en_name', 'required'),
-			array('governerate_id', 'numerical', 'integerOnly'=>true),
+			array('governorate_id', 'numerical', 'integerOnly'=>true),
 			array('code', 'length', 'max'=>10),
 			array('ar_name, en_name', 'length', 'max'=>255),
-			array('governerate_id', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('id, code, ar_name, en_name, governerate_id', 'safe', 'on'=>'search'),
+			array('governorate_id', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('id, code, ar_name, en_name, governorate_id', 'safe', 'on'=>'search'),
 		);
 	}
 
 	public function relations() {
 		return array(
-			'governerate' => array(self::BELONGS_TO, 'Governorate', 'governerate_id'),
+			'governorate' => array(self::BELONGS_TO, 'Governorate', 'governorate_id'),
 			'subdistricts' => array(self::HAS_MANY, 'Subdistrict', 'district_id'),
 		);
 	}
@@ -65,8 +65,8 @@ abstract class BaseDistrict extends GxActiveRecord {
 			'code' => Yii::t('app', 'Code'),
 			'ar_name' => Yii::t('app', 'Ar Name'),
 			'en_name' => Yii::t('app', 'En Name'),
-			'governerate_id' => null,
-			'governerate' => null,
+			'governorate_id' => null,
+			'governorate' => null,
 			'subdistricts' => null,
 		);
 	}
@@ -78,7 +78,7 @@ abstract class BaseDistrict extends GxActiveRecord {
 		$criteria->compare('code', $this->code, true);
 		$criteria->compare('ar_name', $this->ar_name, true);
 		$criteria->compare('en_name', $this->en_name, true);
-		$criteria->compare('governerate_id', $this->governerate_id);
+		$criteria->compare('governorate_id', $this->governorate_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,
