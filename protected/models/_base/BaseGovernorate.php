@@ -48,7 +48,7 @@ abstract class BaseGovernorate extends GxActiveRecord {
 
 	public function relations() {
 		return array(
-			'districts' => array(self::HAS_MANY, 'District', 'governerate_id'),
+			'districts' => array(self::HAS_MANY, 'District', 'governorate_id'),
 			'country' => array(self::BELONGS_TO, 'Country', 'country_id'),
 		);
 	}
