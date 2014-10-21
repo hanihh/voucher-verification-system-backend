@@ -75,6 +75,33 @@ class VoucherController extends BaseController {
         ));
     }
 
+    public function actionRemove() {
+        if ((isset($_POST) && !empty($_POST))) {
+            $subdistribution = Subdistribution::model()->findByPk($_POST['subdistribution_id']);
+            if ($subdistribution) {
+                $criteria_string = "(0";
+                $criteria_string2 = "(0";
+                foreach ($_POST['beneficiaries'] as $ben_id) {
+                    $criteria_string = $criteria_string . ", " . $ben_id;
+                }
+                $criteria_string = $criteria_string . ")";
+                
+                $distributionVouchers = $subdistribution->distributionVouchers;
+                foreach ($distributionVouchers as $distributionVoucher) {
+                    $criteria_string2 = $criteria_string2 . ", " . $distributionVoucher->id;
+                }
+                $criteria_string2 = $criteria_string2 . ")";
+                $vouchers = Voucher::model()->findAll("distribution_voucher_id in ".$criteria_string2." and ben_id in ". $criteria_string);
+                foreach ($vouchers as $voucher) {
+                    $voucher->delete();
+                    $voucher->save();
+                }
+                header('Content-type: application/json', true, 200);
+                echo CJSON::encode(['result' => 'success', 'error'=> ""]);
+            }
+        }
+    }
+    
     public function actionGenerate() {
         $model = new Beneficiary('searchForVoucherAssignment');
         $model->unsetAttributes();
