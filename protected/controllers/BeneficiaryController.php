@@ -24,11 +24,12 @@ class BeneficiaryController extends BaseController {
                     $subdistribution = Subdistribution::model()->findByPk($_GET['subdistribution_id']);
                     $criteria = "id " . $include . " (select distinct ben_id from voucher where distribution_voucher_id in (Select id from distribution_voucher where subdistribution_id in (SELECT id FROM `subdistribution` WHERE distribution_id = " . $subdistribution->distribution_id . ")))";
                 }
-                echo $criteria;
+                //echo $criteria;
                 $beneficiaries= Beneficiary::model()->findAll($criteria);
+                $count = count($beneficiaries);
                 //$model = new Beneficiary('searchForVoucherAssignment');
                 //$model->unsetAttributes();
-                echo CJSON::encode(['Beneficiaries'=>$beneficiaries]);
+                echo CJSON::encode([ 'count' => $count, 'Beneficiaries'=>$beneficiaries]);
             });
         }
 	public function actionView($id) {
