@@ -235,6 +235,7 @@ class VoucherController extends BaseController {
             $error = Error::model()->find('code = :code', array(":code" => $error_code));
             $return['success'] = 0;
             $return['data'] = $data;
+            $return['erroe_code'] = $error_code;
             $return['error'] = ($lang == 'ar') ? $error->ar_text : (($lang == 'tr') ? $error->tr_text : $error->en_text);
         } else {
             $return['success'] = 1;
@@ -342,7 +343,15 @@ class VoucherController extends BaseController {
                 $this->respond('ERR_EXPIRED', [], $lang, $history_intry);
             } else if ($voucher_status->name == 'NOT VALID') {
                 $this->respond('ERR_NOT_VALID', [], $lang, $history_intry);
-            } else {
+            } else if ($voucher_status->name == 'IN MOBILE') {
+                $vendor_mobiles = VendorMobile::model()->findAll("distribution_id = :distribution_id", array(":distribuiton_id"=> $voucher->distributionVoucher->subdistribution->distribution->id));
+                foreach ($vendor_mobiles as $vendor_mobile) {
+                    if ($vendor_mobile->imei == $imei) {
+                        $this->respond('NOT_ALL_SYNCED', [], $lang, $history_intry);
+                    }
+                }
+                $this->respond('ERR_NOT_VALID', [], $lang, $history_intry);
+            }else {
                 $voucher->status_id = 2;
                 $voucher->update();
                 $voucher->save();
@@ -368,9 +377,9 @@ class VoucherController extends BaseController {
         $history_intry->action = VoucherAction::model()->find("name = 'SYNC'")->id;
         if ((isset($_POST) && !empty($_POST))) { // IMPORT MOBILE DATA
             $post = "";
-            foreach ($_POST as $key => $value) {
-                $post .= $key . " => " . $value . "/";
-            }
+            //foreach ($_POST as $key => $value) {
+            //    $post .= $key . " => " . $value . "/";
+            //}
             $history_intry->parameters = $post;
 
             if (isset($_POST['lang']) && !empty($_POST['lang']) && in_array($_POST['lang'], $in_array)) {
@@ -380,7 +389,7 @@ class VoucherController extends BaseController {
                 $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
             if (!isset($_POST['imei']) || empty($_POST['imei']))
                 $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
-            $voucher_codes = base64_decode($_POST['redeemed_voucher']);
+            $voucher_codes = $_POST['redeemed_voucher'];
             $redeem_redeemed_status = VoucherStatus::model()->find("name = :name", array(":name" => "REDEEMED"));
             foreach ($voucher_codes as $voucher_code) {
                 $voucher = Voucher::model()->find("code = :code", array(":code" => $voucher_code));
@@ -419,19 +428,30 @@ class VoucherController extends BaseController {
                 $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
             $vendor_mobiles = VendorMobile::model()->findAll("phone_id = :phone_id", array(":phone_id" => $phone->id));
             $export_list = [];
+            $update_list = [];
             foreach ($vendor_mobiles as $vendor_mobile) {
                 $voucher_status = VoucherStatus::model()->find("name = :name", array(":name" => "PENDING"));
                 $vouchers = Voucher::model()->findAll("status_id = :status_id and vendor_id = :vendor_id", array(":status_id" => $voucher_status->id, ":vendor_id" => $vendor_mobile->vendor_id));
                 //print_r($vouchers);
 
                 foreach ($vouchers as $voucher) {
+                    $obj = new stdClass();
                     if ($voucher->distributionVoucher->subdistribution->distribution->id == $vendor_mobile->distribution_id) {
-                        array_push($export_list, $voucher);
+                        foreach ($voucher as $key => $value) {
+                            $obj->$key = $value;
+                        }
+                        $beneficiary = Beneficiary::model()->findByPk($voucher->ben_id);
+                        if ($beneficiary->registration_code)
+                            $obj->registration_code = $beneficiary->registration_code;
+                        $subdistribution = $voucher->distributionVoucher->subdistribution;
+                        $obj->start_date = $subdistribution->start_date;
+                        array_push($export_list, $obj);
+                        array_push($update_list, $voucher);
                     }
                 }
             }
             $this->respond(NULL, $export_list, $lang, $history_intry, false);
-            foreach ($export_list as $item) {
+            foreach ($update_list as $item) {
                 $in_mobile_status = VoucherStatus::model()->find("name = 'IN_MOBILE'");
                 $item->status_id = $in_mobile_status->id;
                 $item->update();

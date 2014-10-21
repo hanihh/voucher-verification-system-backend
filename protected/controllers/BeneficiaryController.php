@@ -4,7 +4,33 @@ Yii::import('application.models.helpers.BeneficiaryImportResult');
 
 class BeneficiaryController extends BaseController {
 
-        
+        public function restEvents() {
+            $this->onRest('req.get.GetBeneficiaryFordistribution.render', function($distribution_id="", $subdistribution_id="", $include="in") {
+                $include = "not in";
+                $criteria = "";
+                
+                if (isset($_GET['include']) and $_GET['include'] != 0) {
+                    $include = "in";
+                }
+                if (isset($_GET['distribution_id']) and $_GET['distribution_id'] != 0) {
+                    $criteria = "id " . $include . " (select distinct ben_id from voucher where distribution_voucher_id in (Select id from distribution_voucher where subdistribution_id in (SELECT id FROM `subdistribution` WHERE distribution_id = " . $_GET['distribution_id'] . ")))";
+                }
+
+                elseif ((isset($_GET['subdistribution_id']) and $_GET['subdistribution_id'] != 0 and $include == "in")) {
+                    $criteria = "id " . $include . " (select distinct ben_id from voucher where distribution_voucher_id in (Select id from distribution_voucher where subdistribution_id  = " . $_GET['subdistribution_id'] . "))";
+                }
+
+                elseif ((isset($_GET['subdistribution_id']) and $_GET['subdistribution_id'] != 0 and $include != "in")) {
+                    $subdistribution = Subdistribution::model()->findByPk($_GET['subdistribution_id']);
+                    $criteria = "id " . $include . " (select distinct ben_id from voucher where distribution_voucher_id in (Select id from distribution_voucher where subdistribution_id in (SELECT id FROM `subdistribution` WHERE distribution_id = " . $subdistribution->distribution_id . ")))";
+                }
+                echo $criteria;
+                $beneficiaries= Beneficiary::model()->findAll($criteria);
+                //$model = new Beneficiary('searchForVoucherAssignment');
+                //$model->unsetAttributes();
+                echo CJSON::encode(['Beneficiaries'=>$beneficiaries]);
+            });
+        }
 	public function actionView($id) {
 		$this->render('view', array(
 			'model' => $this->loadModel($id, 'Beneficiary'),
@@ -74,6 +100,16 @@ class BeneficiaryController extends BaseController {
 			'model' => $model,
 		));
 	}
+        
+        public function actionGetBeneficiaryFordistribution() {
+            $model = new Beneficiary('searchForVoucherAssignment');
+            $model->unsetAttributes();
+            if (isset($_GET) && !empty($_GET)) {
+                if (isset($_GET['distribution_id']) && !empty($_GET['distribution_id'])) {
+                    
+                }
+            }
+        }
         
         public function actionImport() {
 
