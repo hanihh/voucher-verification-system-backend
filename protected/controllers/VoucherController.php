@@ -92,12 +92,14 @@ class VoucherController extends BaseController {
                 }
                 $criteria_string2 = $criteria_string2 . ")";
                 $vouchers = Voucher::model()->findAll("distribution_voucher_id in ".$criteria_string2." and ben_id in ". $criteria_string);
+                $deleted_count = 0;
                 foreach ($vouchers as $voucher) {
                     $voucher->delete();
                     $voucher->save();
+                    $deleted_count++;
                 }
                 header('Content-type: application/json', true, 200);
-                echo CJSON::encode(['result' => 'success', 'error'=> ""]);
+                echo CJSON::encode(['result' => 'success', 'count_deleted' => $deleted_count, 'error'=> ""]);
             }
         }
     }
