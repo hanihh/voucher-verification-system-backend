@@ -5,10 +5,9 @@ Yii::import('application.models.helpers.BeneficiaryImportResult');
 class BeneficiaryController extends BaseController {
 
         public function restEvents() {
-            $this->onRest('req.get.GetBeneficiaryFordistribution.render', function($distribution_id="", $subdistribution_id="", $include="in") {
+            $this->onRest('req.get.GetBeneficiaryFordistribution.render', function($distribution_id="", $subdistribution_id="", $include=1, $withall = 0) {
                 $include = "not in";
                 $criteria = "";
-                
                 if (isset($_GET['include']) and $_GET['include'] != 0) {
                     $include = "in";
                 }
@@ -16,14 +15,44 @@ class BeneficiaryController extends BaseController {
                     $criteria = "id " . $include . " (select distinct ben_id from voucher where distribution_voucher_id in (Select id from distribution_voucher where subdistribution_id in (SELECT id FROM `subdistribution` WHERE distribution_id = " . $_GET['distribution_id'] . ")))";
                 }
 
-                elseif ((isset($_GET['subdistribution_id']) and $_GET['subdistribution_id'] != 0 and $include == "in")) {
+                elseif ((isset($_GET['subdistribution_id']) and $_GET['subdistribution_id'] != 0 and $_GET['include'] != 0)) {
                     $criteria = "id " . $include . " (select distinct ben_id from voucher where distribution_voucher_id in (Select id from distribution_voucher where subdistribution_id  = " . $_GET['subdistribution_id'] . "))";
+                    if ($_GET['withall'] != 0 ) {
+                        $included_beneficiaries = Beneficiary::model()->findAll($criteria);
+                        $returned_array = [];
+                        foreach ($included_beneficiaries as $beneficiary) {
+                            $obj = new stdClass();
+                            foreach ($beneficiary as $key => $value) {
+                                $obj->$key = $value;
+                            }
+                            $obj->available = "false";
+                            array_push($returned_array, $obj);
+                        }
+                        $count_included = count($included_beneficiaries);
+                        $subdistribution = Subdistribution::model()->findByPk($_GET['subdistribution_id']);
+                        $criteria = "id not in (select distinct ben_id from voucher where distribution_voucher_id in (Select id from distribution_voucher where subdistribution_id in (SELECT id FROM `subdistribution` WHERE distribution_id = " . $subdistribution->distribution_id . ")))";
+                        $available_beneficiaries = Beneficiary::model()->findAll($criteria);
+                        foreach ($available_beneficiaries as $beneficiary) {
+                            $obj = new stdClass();
+                            foreach ($beneficiary as $key => $value) {
+                                $obj->$key = $value;
+                            }
+                            $obj->available = "true";
+                            array_push($returned_array, $obj);
+                        }
+                        $count_available = count($available_beneficiaries);
+                        echo CJSON::encode([ 'available_beneficiaries' => $count_available,'included_beneficiaries' => $count_included, 'Beneficiaries'=>$returned_array]);
+                        Yii::app()->end();
+
+                    }
                 }
 
-                elseif ((isset($_GET['subdistribution_id']) and $_GET['subdistribution_id'] != 0 and $include != "in")) {
+                elseif ((isset($_GET['subdistribution_id']) and $_GET['subdistribution_id'] != 0 and $include == 0)) {
                     $subdistribution = Subdistribution::model()->findByPk($_GET['subdistribution_id']);
                     $criteria = "id " . $include . " (select distinct ben_id from voucher where distribution_voucher_id in (Select id from distribution_voucher where subdistribution_id in (SELECT id FROM `subdistribution` WHERE distribution_id = " . $subdistribution->distribution_id . ")))";
                 }
+                
+                
                 //echo $criteria;
                 $beneficiaries= Beneficiary::model()->findAll($criteria);
                 $count = count($beneficiaries);
