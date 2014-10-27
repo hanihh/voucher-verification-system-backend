@@ -21,26 +21,30 @@ class BeneficiaryController extends BaseController {
                         $included_beneficiaries = Beneficiary::model()->findAll($criteria);
                         $returned_array = [];
                         foreach ($included_beneficiaries as $beneficiary) {
-                            $obj = new stdClass();
+                            $obj = array();
                             foreach ($beneficiary as $key => $value) {
-                                $obj->$key = $value;
+                                array_push($obj, $value);
                             }
-                            $obj->available = "false";
+                            //$obj->available = "false";
+                            array_push($obj,"false");
                             array_push($returned_array, $obj);
+
                         }
                         $count_included = count($included_beneficiaries);
                         $subdistribution = Subdistribution::model()->findByPk($_GET['subdistribution_id']);
                         $criteria = "id not in (select distinct ben_id from voucher where distribution_voucher_id in (Select id from distribution_voucher where subdistribution_id in (SELECT id FROM `subdistribution` WHERE distribution_id = " . $subdistribution->distribution_id . ")))";
                         $available_beneficiaries = Beneficiary::model()->findAll($criteria);
                         foreach ($available_beneficiaries as $beneficiary) {
-                            $obj = new stdClass();
+                            $obj = array();
                             foreach ($beneficiary as $key => $value) {
-                                $obj->$key = $value;
+                                array_push($obj, $value);
                             }
-                            $obj->available = "true";
+                            array_push($obj,"true");
                             array_push($returned_array, $obj);
+
                         }
                         $count_available = count($available_beneficiaries);
+                        //echo CJSON::encode((array)$returned_array[0]);
                         echo CJSON::encode([ 'available_beneficiaries' => $count_available,'included_beneficiaries' => $count_included, 'Beneficiaries'=>$returned_array]);
                         Yii::app()->end();
 
