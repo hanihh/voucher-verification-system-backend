@@ -87,7 +87,7 @@ class SubdistributionController extends BaseController {
             $obj = new VoucherController("");
             $html = '';
             foreach ($vouchers as $voucher) {
-                $html .= $obj->actionPrint($vouchers[0]->id);
+                $html .= $obj->actionPrint($voucher->id);
             }
             echo $html;
                 

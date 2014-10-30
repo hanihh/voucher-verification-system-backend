@@ -104,6 +104,63 @@ class VoucherController extends BaseController {
         }
     }
     
+    public function actionUpdateVoucherVendor() {
+        if ((isset($_POST) && !empty($_POST))) {
+            $distribution = Distribution::model()->findByPk($_POST['distribution_id']);
+            $vendor = Vendor::model()->findByPk($_POST['vendor_id']);
+            $subdistributions = $distribution->subdistributions;
+            $criteria_string = "(0";
+            foreach ($subdistributions as $subdistribution) {
+                foreach ($subdistribution->distributionVouchers as $ditributioVoucher) {
+                    $criteria_string = $criteria_string . ", " . $ditributioVoucher->id;
+                }
+            }
+            $criteria_string = $criteria_string . ")";
+            
+            $criteria_string2 = "(0";
+            foreach ($_POST['beneficiaries'] as $ben_id) {
+                $criteria_string2 = $criteria_string2 . ", " . $ben_id;
+            }
+            $criteria_string2 = $criteria_string2 . ")";
+            $vouchers = Voucher::model()->findAll("distribution_voucher_id in ".$criteria_string . " and ben_id in " . $criteria_string2);
+            foreach ($vouchers as $voucher) {
+                $voucher->vendor_id = $vendor->id;
+                $voucher->update();
+                $voucher->save();
+            }
+            
+        }
+    }
+    
+    public function actiondeleteVoucherVendor() {
+        if ((isset($_POST) && !empty($_POST))) {
+            $distribution = Distribution::model()->findByPk($_POST['distribution_id']);
+            $vendor = Vendor::model()->findByPk($_POST['vendor_id']);
+            $subdistributions = $distribution->subdistributions;
+            $criteria_string = "(0";
+            foreach ($subdistributions as $subdistribution) {
+                foreach ($subdistribution->distributionVouchers as $ditributioVoucher) {
+                    $criteria_string = $criteria_string . ", " . $ditributioVoucher->id;
+                }
+            }
+            $criteria_string = $criteria_string . ")";
+            
+            $criteria_string2 = "(0";
+            foreach ($_POST['beneficiaries'] as $ben_id) {
+                $criteria_string2 = $criteria_string2 . ", " . $ben_id;
+            }
+            $criteria_string2 = $criteria_string2 . ")";
+            $vouchers = Voucher::model()->findAll("vendor_id = ".$vendor->id ." and distribution_voucher_id in ".$criteria_string . " and ben_id in " . $criteria_string2);
+            foreach ($vouchers as $voucher) {
+                $voucher->vendor_id = NULL;
+                $voucher->update();
+                $voucher->save();
+            }
+            
+        }
+    }
+    
+    
     public function actionGenerate() {
         $model = new Beneficiary('searchForVoucherAssignment');
         $model->unsetAttributes();
@@ -230,8 +287,8 @@ class VoucherController extends BaseController {
                                     <td style="font-size: 16pt; vertical-align: top;">Value: $' . $voucher->distributionVoucher->value . '</td>
                             </tr>
                             <tr>
-                                    <td style="padding-left: 10px; vertical-align: bottom; text-align: right;">Exp: ' . date("d/m/Y", strtotime($voucher->distributionVoucher->expiration_date)) . '</td>
-                                    <td style="vertical-align: bottom; text-align: right;">Exp: ' . date("d/m/Y", strtotime($voucher->distributionVoucher->expiration_date)) . '</td>
+                                    <td style="padding-left: 10px; vertical-align: bottom; text-align: right;">Exp: ' . date("d/m/Y", strtotime($voucher->distributionVoucher->subdistribution->end_date)) . '</td>
+                                    <td style="vertical-align: bottom; text-align: right;">Exp: ' . date("d/m/Y", strtotime($voucher->distributionVoucher->subdistribution->end_date)) . '</td>
                             </tr>
                     </table><br /><br />';
                 return $html_output;
@@ -329,6 +386,8 @@ class VoucherController extends BaseController {
             $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
         }
     }
+    
+    
 
     public function actionRedeemVoucher() {
         $this->layout = false;
@@ -474,6 +533,8 @@ class VoucherController extends BaseController {
                             $obj->registration_code = $beneficiary->registration_code;
                         $subdistribution = $voucher->distributionVoucher->subdistribution;
                         $obj->start_date = $subdistribution->start_date;
+                        $obj->expiration_date = $subdistribution->end_date;
+                        $obj->status_name = $voucher->status->name;
                         array_push($export_list, $obj);
                         array_push($update_list, $voucher);
                     }
