@@ -7,6 +7,23 @@ class Beneficiary extends BaseBeneficiary {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
+    
+    public function getVendor($distribution_id) {
+        $distribution = Distribution::model()->findByPk($distribution_id);
+        if (!$distribution)
+            return 0;
+        $criteria = "(0";
+        foreach ($distribution->subdistributions as $subdistribution) {
+            foreach ($subdistribution->distributionVouchers as $distributionVoucher) {
+                $criteria .=  "," . $distributionVoucher->id ;
+            }
+        }
+        $criteria .= ")";
+        $voucher = Voucher::model()->find("ben_id = " . $this->id . " and distribution_voucher_id in " . $criteria);
+        if ($voucher->vendor_id == null) 
+            return 0;
+        return $voucher->vendor_id;
+    }
 
     public function searchForVoucherAssignment() {
         $criteria = new CDbCriteria;
