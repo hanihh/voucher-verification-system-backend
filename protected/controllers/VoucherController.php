@@ -260,11 +260,13 @@ class VoucherController extends BaseController {
                         thead { display:table-header-group }
                         tfoot { display:table-footer-group }
                         </style>";
+                $ar_text = ($voucher->distributionVoucher->subdistribution->distribution->title_ar) ? $voucher->distributionVoucher->subdistribution->distribution->title_ar : $voucher->distributionVoucher->type->arabic_text;
+                $en_text = ($voucher->distributionVoucher->subdistribution->distribution->title_en) ? $voucher->distributionVoucher->subdistribution->distribution->title_en : $voucher->distributionVoucher->type->english_text;
                 $html_output .= '<table  align="center" class="printing" style=" empty-cells: show; border: 1px solid; text-align:center">
                             <tr>
-                                    <td rowspan="2" colspan="2"><span style="font-size: 17pt; text-align: center;">' . $voucher->distributionVoucher->subdistribution->distribution->title_en . '<br />' . $voucher->distributionVoucher->subdistribution->distribution->title_ar . '</span></td>
-                                    <td rowspan="2" style="border-left: 2px dashed;  padding: 5px 10px 0px; vertical-align:top;" align="top"><img style="height: 70px;" src="' . Yii::app()->baseUrl . ".." . DIRECTORY_SEPARATOR . Yii::app()->params['ASSET_PATH'] . 'logo.gif"></img></td>
-                                    <td rowspan="2" style="width: 200px;"><span style="font-size: 17pt; text-align: center; ">' . $voucher->distributionVoucher->subdistribution->distribution->title_en . '<br />' . $voucher->distributionVoucher->subdistribution->distribution->title_ar . '</span></td>
+                                    <td rowspan="2" colspan="2"><span style="font-size: 17pt; text-align: center;">' . $en_text . '<br />' . $ar_text . '</span></td>
+                                    <td rowspan="2" style="border-left: 2px dashed;  padding: 5px 10px 0px; vertical-align:top;" align="top"><img style="height: 70px;" src="' . Yii::app()->params['ASSET_PATH'] . 'logo.gif"></img></td>
+                                    <td rowspan="2" style="width: 200px;"><span style="font-size: 17pt; text-align: center; ">' . $en_text . '<br />' . $ar_text . '</span></td>
                                     <td style="height: 70px; padding-top: 5px;">' . CHtml::image(Yii::app()->baseUrl . ".." . DIRECTORY_SEPARATOR . $voucher->distributionVoucher->subdistribution->distribution->donor->logo_path, "", array("style" => "width:100px;")) . '</td>
                             </tr>
                             <tr>
@@ -276,11 +278,11 @@ class VoucherController extends BaseController {
                             <tr>
                                     <td style="padding-left: 5px;font-size: 14pt; vertical-align: bottom;">ID#: ' . $voucher->ben->registration_code . '</td>
                                     <td style="text-align: center; padding: 30px 14px 0px;" rowspan="3">' .
-                        CHtml::image(Yii::app()->baseUrl . ".." . DIRECTORY_SEPARATOR . Yii::app()->params['VOUCHERS_QR_PATH'] . DIRECTORY_SEPARATOR . $voucher->distributionVoucher->subdistribution->distribution->id . DIRECTORY_SEPARATOR . $voucher->distributionVoucher->subdistribution->id . DIRECTORY_SEPARATOR . $voucher->code . ".png") . '<br />' . $voucher->code . '</td>
+                        CHtml::image(Yii::app()->params['VOUCHERS_QR_PATH'] . DIRECTORY_SEPARATOR . $voucher->distributionVoucher->subdistribution->distribution->id . DIRECTORY_SEPARATOR . $voucher->distributionVoucher->subdistribution->id . DIRECTORY_SEPARATOR . $voucher->code . ".png") . '<br />' . $voucher->code . '</td>
                                     <td style="border-left: 2px dashed;" rowspan="3"> </td>
                                     <td style="font-size: 16pt; vertical-align: bottom;">ID#: ' . $voucher->ben->registration_code . '</td>
                                     <td style="text-align: center; padding-top: 30px;" rowspan="3">' .
-                        CHtml::image(Yii::app()->baseUrl . ".." . DIRECTORY_SEPARATOR . Yii::app()->params['VOUCHERS_QR_PATH'] . DIRECTORY_SEPARATOR . $voucher->distributionVoucher->subdistribution->distribution->id . DIRECTORY_SEPARATOR . $voucher->distributionVoucher->subdistribution->id . DIRECTORY_SEPARATOR . $voucher->code . ".png") . '<br />' . $voucher->code . '</td>
+                        CHtml::image(Yii::app()->params['VOUCHERS_QR_PATH'] . DIRECTORY_SEPARATOR . $voucher->distributionVoucher->subdistribution->distribution->id . DIRECTORY_SEPARATOR . $voucher->distributionVoucher->subdistribution->id . DIRECTORY_SEPARATOR . $voucher->code . ".png") . '<br />' . $voucher->code . '</td>
                             </tr>
                             <tr>
                                     <td style="font-size: 16pt; vertical-align: top;">Value: $' . $voucher->distributionVoucher->value . '</td>

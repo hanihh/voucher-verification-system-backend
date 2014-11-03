@@ -80,7 +80,16 @@ class DistributionController extends BaseController {
             foreach ($subdistributions as $subdistribution ) {
                 $html .= $obj->actionPrint($subdistribution->id);
             }
-            echo $html;
+            return $html;
         }
 
+        public function actionSavePdf($id) {
+            $distribution = Distribution::model()->findByPk($id);
+            $html = $this->actionPrint($id);
+            //echo $html;
+            $mPDF1 = Yii::app()->ePdf->mpdf('ar', 'A4');
+            $mPDF1->WriteHTML($html);
+            $mPDF1->Output($distribution->name . '_vouchers.pdf', "D");
+            Yii::app()->end();
+        }
 }
