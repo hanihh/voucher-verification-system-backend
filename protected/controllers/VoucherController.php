@@ -94,7 +94,11 @@ class VoucherController extends BaseController {
                 $vouchers = Voucher::model()->findAll("distribution_voucher_id in ".$criteria_string2." and ben_id in ". $criteria_string);
                 $deleted_count = 0;
                 foreach ($vouchers as $voucher) {
-                    $voucher->delete();
+                    if (isset($_POST['removevendor']) && $_POST['removevendor'] == 1) {
+                        $voucher->vendor_id = null;
+                    } else {
+                        $voucher->delete();
+                    }
                     $voucher->save();
                     $deleted_count++;
                 }
