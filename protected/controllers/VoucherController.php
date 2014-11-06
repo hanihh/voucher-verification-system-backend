@@ -181,6 +181,7 @@ class VoucherController extends BaseController {
                 // Choose eligible beneficiaries -- who are not registered in this distribution (Not sub distribution)
                 $criteria3 = new CDbCriteria;
                 $criteria_string = "t.id in (0";
+                if ((isset($_POST['beneficiaries']) && !empty($_POST['beneficiaries'])))
                 foreach ($_POST['beneficiaries'] as $ben_id) {
                     $criteria_string = $criteria_string . ", " . $ben_id;
                 }
