@@ -85,13 +85,13 @@ class VoucherController extends BaseController {
                     $criteria_string = $criteria_string . ", " . $ben_id;
                 }
                 $criteria_string = $criteria_string . ")";
-                
+
                 $distributionVouchers = $subdistribution->distributionVouchers;
                 foreach ($distributionVouchers as $distributionVoucher) {
                     $criteria_string2 = $criteria_string2 . ", " . $distributionVoucher->id;
                 }
                 $criteria_string2 = $criteria_string2 . ")";
-                $vouchers = Voucher::model()->findAll("distribution_voucher_id in ".$criteria_string2." and ben_id in ". $criteria_string);
+                $vouchers = Voucher::model()->findAll("distribution_voucher_id in " . $criteria_string2 . " and ben_id in " . $criteria_string);
                 $deleted_count = 0;
                 foreach ($vouchers as $voucher) {
                     if (isset($_POST['removevendor']) && $_POST['removevendor'] == 1) {
@@ -103,11 +103,11 @@ class VoucherController extends BaseController {
                     $deleted_count++;
                 }
                 header('Content-type: application/json', true, 200);
-                echo CJSON::encode(['result' => 'success', 'count_deleted' => $deleted_count, 'error'=> ""]);
+                echo CJSON::encode(['result' => 'success', 'count_deleted' => $deleted_count, 'error' => ""]);
             }
         }
     }
-    
+
     public function actionUpdateVoucherVendor() {
         if ((isset($_POST) && !empty($_POST))) {
             $distribution = Distribution::model()->findByPk($_POST['distribution_id']);
@@ -120,22 +120,23 @@ class VoucherController extends BaseController {
                 }
             }
             $criteria_string = $criteria_string . ")";
-            
+
             $criteria_string2 = "(0";
-            foreach ($_POST['beneficiaries'] as $ben_id) {
-                $criteria_string2 = $criteria_string2 . ", " . $ben_id;
-            }
+            if ((isset($_POST['beneficiaries']) && !empty($_POST['beneficiaries'])))
+                foreach ($_POST['beneficiaries'] as $ben_id)
+                    $criteria_string2 = $criteria_string2 . ", " . $ben_id;
             $criteria_string2 = $criteria_string2 . ")";
-            $vouchers = Voucher::model()->findAll("distribution_voucher_id in ".$criteria_string . " and ben_id in " . $criteria_string2);
-            foreach ($vouchers as $voucher) {
-                $voucher->vendor_id = $vendor->id;
-                $voucher->update();
-                $voucher->save();
+            $vouchers = Voucher::model()->findAll("distribution_voucher_id in " . $criteria_string . " and ben_id in " . $criteria_string2);
+            if (count($vouchers) > 0) {
+                foreach ($vouchers as $voucher) {
+                    $voucher->vendor_id = $vendor->id;
+                    $voucher->update();
+                    $voucher->save();
+                }
             }
-            
         }
     }
-    
+
     public function actiondeleteVoucherVendor() {
         if ((isset($_POST) && !empty($_POST))) {
             $distribution = Distribution::model()->findByPk($_POST['distribution_id']);
@@ -148,23 +149,21 @@ class VoucherController extends BaseController {
                 }
             }
             $criteria_string = $criteria_string . ")";
-            
+
             $criteria_string2 = "(0";
             foreach ($_POST['beneficiaries'] as $ben_id) {
                 $criteria_string2 = $criteria_string2 . ", " . $ben_id;
             }
             $criteria_string2 = $criteria_string2 . ")";
-            $vouchers = Voucher::model()->findAll("vendor_id = ".$vendor->id ." and distribution_voucher_id in ".$criteria_string . " and ben_id in " . $criteria_string2);
+            $vouchers = Voucher::model()->findAll("vendor_id = " . $vendor->id . " and distribution_voucher_id in " . $criteria_string . " and ben_id in " . $criteria_string2);
             foreach ($vouchers as $voucher) {
                 $voucher->vendor_id = NULL;
                 $voucher->update();
                 $voucher->save();
             }
-            
         }
     }
-    
-    
+
     public function actionGenerate() {
         $model = new Beneficiary('searchForVoucherAssignment');
         $model->unsetAttributes();
@@ -392,8 +391,6 @@ class VoucherController extends BaseController {
             $this->respond('ERR_INVALID_REEQUEST', [], $lang, $history_intry);
         }
     }
-    
-    
 
     public function actionRedeemVoucher() {
         $this->layout = false;
@@ -438,14 +435,14 @@ class VoucherController extends BaseController {
             } else if ($voucher_status->name == 'NOT VALID') {
                 $this->respond('ERR_NOT_VALID', [], $lang, $history_intry);
             } else if ($voucher_status->name == 'IN MOBILE') {
-                $vendor_mobiles = VendorMobile::model()->findAll("distribution_id = :distribution_id", array(":distribuiton_id"=> $voucher->distributionVoucher->subdistribution->distribution->id));
+                $vendor_mobiles = VendorMobile::model()->findAll("distribution_id = :distribution_id", array(":distribuiton_id" => $voucher->distributionVoucher->subdistribution->distribution->id));
                 foreach ($vendor_mobiles as $vendor_mobile) {
                     if ($vendor_mobile->imei == $imei) {
                         $this->respond('NOT_ALL_SYNCED', [], $lang, $history_intry);
                     }
                 }
                 $this->respond('ERR_NOT_VALID', [], $lang, $history_intry);
-            }else {
+            } else {
                 $voucher->status_id = 2;
                 $voucher->update();
                 $voucher->save();
