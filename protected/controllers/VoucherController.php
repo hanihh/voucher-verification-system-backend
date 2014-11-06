@@ -492,6 +492,7 @@ class VoucherController extends BaseController {
                     $error .= $voucher_code . ", ";
                 } else {
                     $voucher->status_id = $redeem_redeemed_status->id;
+                    $voucher->sync_date = new CDbExpression('NOW()');
                     $voucher->update();
                     $voucher->save();
                     $sync_count += 1;
